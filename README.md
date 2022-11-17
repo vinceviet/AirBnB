@@ -1,8 +1,8 @@
-# `<name of application here>`
+# `AirBnB Clone`
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![](./AirBnB-schema.png)
 
 ## API Documentation
 
