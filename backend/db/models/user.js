@@ -47,6 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
   User.init({
     firstName: {
       allowNull: false,
