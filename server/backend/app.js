@@ -56,6 +56,4 @@ app.get('/', (req, res) => {
     res.json({ message: 'API is running' })
 });
 
-app.get('/test')
-
 module.exports = app;
