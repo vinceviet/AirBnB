@@ -52,14 +52,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DECIMAL
       },
-      avgRating: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
-      previewImage: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       ownerId: {
         allowNull: false,
         type: Sequelize.INTEGER,

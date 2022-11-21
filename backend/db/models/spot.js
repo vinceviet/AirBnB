@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Spot.belongsToMany(models.User, { through: models.Booking, foreignKey: 'spotId' });
-      Spot.hasMany(models.Reviews, { foreignKey: 'spotId' });
+      Spot.belongsToMany(models.User, { through: models.Review, foreignKey: 'spotId' });
       Spot.hasMany(models.SpotImages, { foreignKey: 'spotId' });
+      Spot.belongsTo(models.User, { as: 'Owner', foreignKey: ownerId })
     };
   }
   Spot.init({
@@ -59,15 +60,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DECIMAL,
       validate: { min: 0 }
-    },
-    avgRating: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      validate: { min: 0, max: 5 }
-    },
-    previewImage: {
-      allowNull: false,
-      type: DataTypes.STRING
     },
     ownerId: {
       allowNull: false,
