@@ -57,3 +57,10 @@ app.get('/', (req, res) => {
 });
 
 module.exports = app;
+
+
+// Build/deploy to roll sequelize files and re-execute
+// npm install && npm run build && npm run sequelize --prefix backend db:seed:undo:all && npm run sequelize --prefix backend db:migrate:undo:all && npm run sequelize --prefix backend db:migrate && npm run sequelize --prefix backend db:seed:all
+
+// Build/deploy after updating DB
+// npm install && npm run build && npm run sequelize --prefix backend db:migrate && npm run sequelize --prefix backend db:seed:all
