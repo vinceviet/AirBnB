@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up(queryInterface, Sequelize) {
     options.tableName = 'ReviewImages';
-    return queryInterface.bulkInsert(options, [
+    await queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
         url: 'placeholder.com'
@@ -28,7 +28,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'ReviewImages';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
+    await queryInterface.bulkDelete(options, {
       country: { [Op.in]: ['Grand Line', 'East Blue'] }
     }, {});
   }

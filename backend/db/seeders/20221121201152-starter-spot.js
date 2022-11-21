@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
   async up(queryInterface, Sequelize) {
     options.tableName = 'Spots';
-    return queryInterface.bulkInsert(options, [
+    await queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
         address: '429 Shanks Ave',
@@ -20,7 +20,7 @@ module.exports = {
         lng: 95,
         name: 'Thousand Sunny',
         description: 'Ship of the future pirate king!',
-        price: 134
+        price: 134.11
       },
       {
         ownerId: 1,
@@ -32,7 +32,7 @@ module.exports = {
         lng: 85,
         name: 'Enies Lobby',
         description: 'Check out the big door that leads to Impel Down!',
-        price: 234
+        price: 234.22
       },
       {
         ownerId: 1,
@@ -44,7 +44,7 @@ module.exports = {
         lng: 89,
         name: "Vivi's Palce",
         description: 'Enjoy a luxurious stay in the country palace!',
-        price: 764
+        price: 764.33
       }
     ], {})
   },
@@ -52,7 +52,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
+    await queryInterface.bulkDelete(options, {
       country: { [Op.in]: ['Grand Line', 'East Blue'] }
     }, {});
   }

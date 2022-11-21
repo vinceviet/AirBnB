@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Spot.belongsToMany(models.User, { through: models.Booking, foreignKey: 'spotId' });
       Spot.belongsToMany(models.User, { through: models.Review, foreignKey: 'spotId' });
       Spot.hasMany(models.SpotImages, { foreignKey: 'spotId' });
-      Spot.belongsTo(models.User, { as: 'Owner', foreignKey: ownerId })
+      Spot.belongsTo(models.User, { as: 'Owner', foreignKey: 'ownerId' })
     };
   }
   Spot.init({
@@ -24,17 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     city: {
       allowNull: false,
       type: DataTypes.STRING,
-      validate: { len: [1, 25], isAlpha: true }
+      validate: { len: [1, 50], isAlpha: true }
     },
     state: {
       allowNull: false,
       type: DataTypes.STRING,
-      validate: { len: [1, 25], isAlpha: true }
+      validate: { len: [1, 50], isAlpha: true }
     },
     country: {
       allowNull: false,
       type: DataTypes.STRING,
-      validate: { len: [1, 25], isAlpha: true }
+      validate: { len: [1, 50], isAlpha: true }
     },
     lat: {
       allowNull: false,
