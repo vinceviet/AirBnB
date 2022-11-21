@@ -12,7 +12,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: '429 Grandline Ave',
+        address: '429 Shanks Ave',
         city: 'Foosha Village',
         state: 'Goa Kingdom',
         country: 'East Blue',
@@ -24,14 +24,14 @@ module.exports = {
       },
       {
         ownerId: 2,
-        address: '10671 Sword Lane',
-        city: 'Shimotsuki Village',
-        state: 'Goa Kingdom',
-        country: 'East Blue',
+        address: '10671 One Way Lane',
+        city: 'World Government',
+        state: 'Paradise',
+        country: 'Grand Line',
         lat: 55,
         lng: 85,
-        name: 'Santoryu Tavern',
-        description: 'Place includes the best sake in East Blue!',
+        name: 'Enies Lobby',
+        description: 'Check out the big door that leads to Impel Down!',
         price: 234
       },
       {
@@ -41,13 +41,11 @@ module.exports = {
         country: 'Grand Line',
         lat: -50,
         lng: 89,
-        name: 'Palace of Vivi',
-        description: 'Enjoy a luxurious stay in the country castle!',
+        name: "Vivi's Palce",
+        description: 'Enjoy a luxurious stay in the country palace!',
         price: 764
       }
     ], {})
-
-
   },
 
   async down(queryInterface, Sequelize) {
