@@ -23,7 +23,7 @@ module.exports = {
         price: 134
       },
       {
-        ownerId: 2,
+        ownerId: 1,
         address: '10671 One Way Lane',
         city: 'World Government',
         state: 'Paradise',
@@ -35,6 +35,7 @@ module.exports = {
         price: 234
       },
       {
+        ownerId: 1,
         address: '333 Desert Lane',
         city: 'Arabasta',
         state: 'Paradise',
