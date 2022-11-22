@@ -16,8 +16,8 @@ module.exports = {
         city: 'Foosha Village',
         state: 'Goa Kingdom',
         country: 'East Blue',
-        lat: 45,
-        lng: 95,
+        lat: 45.123124,
+        lng: 95.2532352,
         name: 'Thousand Sunny',
         description: 'Ship of the future pirate king!',
         price: 134.11
@@ -28,8 +28,8 @@ module.exports = {
         city: 'World Government',
         state: 'Paradise',
         country: 'Grand Line',
-        lat: 55,
-        lng: 85,
+        lat: 55.234234,
+        lng: 85.23424,
         name: 'Enies Lobby',
         description: 'Check out the big door that leads to Impel Down!',
         price: 234.22
@@ -40,8 +40,8 @@ module.exports = {
         city: 'Arabasta',
         state: 'Paradise',
         country: 'Grand Line',
-        lat: -50,
-        lng: 89,
+        lat: -50.1866,
+        lng: 89.49312,
         name: "Vivi's Palce",
         description: 'Enjoy a luxurious stay in the country palace!',
         price: 764.33
@@ -52,7 +52,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete(options, {
+    await queryInterface.bulkDelete(options, options, {
       country: { [Op.in]: ['Grand Line', 'East Blue'] }
     }, {});
   }
