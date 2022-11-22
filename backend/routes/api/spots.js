@@ -4,3 +4,4 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, User } = require('../../db/models');
 const router = express.Router();
 
+module.exports = router;
