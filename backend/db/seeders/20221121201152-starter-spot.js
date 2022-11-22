@@ -52,7 +52,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete(options, options, {
+    await queryInterface.bulkDelete(options, {
       country: { [Op.in]: ['Grand Line', 'East Blue'] }
     }, {});
   }
