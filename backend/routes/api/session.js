@@ -28,8 +28,8 @@ router.post('/', validateLogin, async (req, res, next) => {
         err.errors = ['The provided credentials were invalid.'];
         return next(err);
     }
-
-    await setTokenCookie(res, user);
+    let token = await setTokenCookie(res, user);
+    user.token = token;
     return res.json({ user });
 });
 
@@ -45,7 +45,5 @@ router.get('/', restoreUser, (req, res) => {
     if (user) return res.json({ user: user.toSafeObject() });
     else return res.json({});
 });
-
-
 
 module.exports = router;

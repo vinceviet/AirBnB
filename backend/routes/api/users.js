@@ -3,6 +3,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { User } = require('../../db/models');
+const { Op } = require('sequelize');
 const router = express.Router();
 
 const validateSignup = [
@@ -29,7 +30,8 @@ const validateSignup = [
 router.post('/', validateSignup, async (req, res) => {
     const { firstName, lastName, email, password, username } = req.body;
     const user = await User.signup({ firstName, lastName, email, username, password });
-    await setTokenCookie(res, user);
+    let token = await setTokenCookie(res, user);
+    user.token = token;
     return res.json({ user });
 });
 
