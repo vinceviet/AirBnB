@@ -18,12 +18,37 @@ const validateSignup = [
     handleValidationErrors
 ];
 
-// Sign up
-router.post('/', validateSignup, async (req, res) => {
-    const { firstName, lastName, email, password, username } = req.body;
-    // if (User.findOne({ where: { email } })) res.status(403).json({ message: "User already exists", statusCode: 403, errors: { email: 'User with that email already exists' } });
-    // else if (User.findOne({ where: { username } })) res.status(403).json({ message: "User already exists", statusCode: 403, errors: { email: 'User with that username already exists' } });
+const checkIfEmailOrUsernameExists = (req, res, next) => {
+    User.findOne({ where: { email: req.body.email } }).then(user => {
+        if (user) {
+            res.status(403).json({
+                message: "User already exists",
+                statusCode: 403,
+                errors: {
+                    email: "User with that email already exists"
+                }
+            });
+            return;
+        };
+        User.findOne({ where: { username: req.body.username } }).then(user => {
+            if (user) {
+                res.status(403).json({
+                    message: "User already exists",
+                    statusCode: 403,
+                    errors: {
+                        username: "User with that username already exists"
+                    }
+                });
+                return;
+            };
+            next();
+        });
+    });
+};
 
+// Sign up
+router.post('/', [validateSignup, checkIfEmailOrUsernameExists], async (req, res) => {
+    const { firstName, lastName, email, password, username } = req.body;
     let user = await User.signup({ firstName, lastName, email, username, password });
     let token = setTokenCookie(res, user);
     const tokenContainer = {};
