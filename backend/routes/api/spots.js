@@ -8,9 +8,13 @@ router.get('/', async (req, res) => {
     const spots = await Spot.findAll();
     const ratingAndImage = {};
     const avgRating = await Review.findOne({
-        
-    })
-        res.json(spots)
+        include: { model: Spot, attributes: ['id'] },
+        attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
+        where: { spotId: spots.id }
+    });
+    console.log(avgRating);
+
+    res.json(spots)
 });
 
 module.exports = router;
