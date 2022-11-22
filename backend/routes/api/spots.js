@@ -1,7 +1,16 @@
 const express = require('express');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { Spot, User } = require('../../db/models');
+const { Spot, User, Review, SpotImage, sequelize } = require('../../db/models');
 const router = express.Router();
+
+router.get('/', async (req, res) => {
+    const spots = await Spot.findAll();
+    const ratingAndImage = {};
+    const avgRating = await Review.findOne({
+        
+    })
+        res.json(spots)
+});
 
 module.exports = router;
