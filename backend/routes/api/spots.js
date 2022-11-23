@@ -121,4 +121,16 @@ router.post('/', validatePost, checkIfAddressExists, async (req, res) => {
     res.json(newSpot);
 });
 
+router.post('/:spotId/images', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    if (!spot) res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    const { url, preview } = req.body;
+    const newImage = await SpotImage.create({ url, preview, spotId: req.params.spotId });
+    const scopedImage = await SpotImage.scope('postNewImage').findByPk(newImage.id)
+    res.json(scopedImage);
+});
+
+
+
+
 module.exports = router;
