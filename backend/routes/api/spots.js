@@ -123,18 +123,27 @@ router.post('/', requireAuth, validatePost, checkIfAddressExists, async (req, re
 
 router.post('/:spotId/images', async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
-    if (!spot) res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     const { url, preview } = req.body;
     const newImage = await SpotImage.create({ url, preview, spotId: req.params.spotId });
     const scopedImage = await SpotImage.scope('postNewImage').findByPk(newImage.id)
     res.json(scopedImage);
 });
 
-// router.put('/:spotId', validatePost, checkIfAddressExists, async (req, res) => {
-//     const spot = await Spot.findByPk(req.params.spotId);
-//     const { address, city, state, country, lat, lng, name, description, price } = req.body;
+router.put('/:spotId', requireAuth, /*validatePost, checkIfAddressExists,*/ async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const updatedSpot = await spot.update({ address, city, state, country, lat, lng, name, description, price, owerId: req.user.id });
+    res.json(updatedSpot);
+});
 
-// });
+router.delete('/:spotId', requireAuth, async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    await spot.destroy();
+    res.json({ message: "Successfully deleted", statusCode: 200 });
+});
 
 
 module.exports = router;
