@@ -6,6 +6,12 @@ const { Spot, User, Review, ReviewImage, SpotImage, sequelize } = require('../..
 const { Op } = require('sequelize');
 const router = express.Router();
 
+const validateReview = [
+    check('review').exists({ checkFalsy: true }).notEmpty().withMessage("Review text is required"),
+    check('stars').exists({ checkFalsy: true }).notEmpty().withMessage("Stars must be an integer from 1 to 5"),
+    handleValidationErrors
+];
+
 router.get('/current', requireAuth, async (req, res) => {
     const reviewList = {};
     const reviews = await Review.findAll({
@@ -42,10 +48,16 @@ router.post('/:reviewId/images', async (req, res) => {
 
     const reviewImages = await ReviewImage.count({ where: { reviewId: req.params.reviewId } });
     if (reviewImages >= 10) return res.status(403).json({ message: "Maximum number of images for this resource was reached", statusCode: 403 });
-
     const scopedImage = await ReviewImage.scope('createImage').findByPk(newImage.id);
-
     res.json(scopedImage);
+});
+
+router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
+    const reviewId = await Review.findByPk(req.params.reviewId);
+    if (!reviewId) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
+    const { review, stars } = req.body;
+    const editedReview = await reviewId.update({ review, stars });
+    res.json(editedReview);
 });
 
 module.exports = router;
