@@ -24,17 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     city: {
       allowNull: false,
       type: DataTypes.STRING,
-      validate: { len: [1, 50], isAlpha: true }
+      validate: { len: [1, 50] }
     },
     state: {
       allowNull: false,
       type: DataTypes.STRING,
-      validate: { len: [1, 50], isAlpha: true }
+      validate: { len: [1, 50] }
     },
     country: {
       allowNull: false,
       type: DataTypes.STRING,
-      validate: { len: [1, 50], isAlpha: true }
+      validate: { len: [1, 50] }
     },
     lat: {
       allowNull: false,
@@ -62,7 +62,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: { min: 0 }
     },
     ownerId: {
-      allowNull: false,
       type: DataTypes.INTEGER
     },
   }, {

@@ -6,6 +6,35 @@ const { Spot, User, Review, SpotImage, sequelize } = require('../../db/models');
 const user = require('../../db/models/user');
 const router = express.Router();
 
+const validatePost = [
+    check('address').exists({ checkFalsy: true }).notEmpty().withMessage("Street address is required"),
+    check('city').exists({ checkFalsy: true }).withMessage("City is required"),
+    check('state').exists({ checkFalsy: true }).withMessage("State is required"),
+    check('country').exists({ checkFalsy: true }).withMessage("Country is required"),
+    check('lat').exists({ checkFalsy: true }).withMessage("Latitude is not valid"),
+    check('lng').exists({ checkFalsy: true }).withMessage("Longitude is not valid"),
+    check('name').exists({ checkFalsy: true }).withMessage("Name must be less than 50 characters"),
+    check('description').exists({ checkFalsy: true }).withMessage("Description is required"),
+    check('price').exists({ checkFalsy: true }).withMessage("Price per day is required"),
+    handleValidationErrors
+];
+
+const checkIfAddressExists = (req, res, next) => {
+    Spot.findOne({ where: { address: req.body.address } }).then(spot => {
+        if (spot) {
+            res.status(403).json({
+                message: "Address already exists",
+                statusCode: 403,
+                errors: {
+                    address: "Spot with that address already exists"
+                }
+            });
+            return;
+        };
+        next()
+    });
+};
+
 router.get('/', async (req, res) => {
     const spotContainer = [];
     const ratingAndImage = {};
@@ -82,6 +111,14 @@ router.get('/:spotId', async (req, res) => {
     spot = spot.toJSON();
     Object.assign(spot, reviewStats);
     res.json(spot);
+});
+
+router.post('/', validatePost, checkIfAddressExists, async (req, res) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
+    const newSpot = await Spot.create({
+        address, city, state, country, lat, lng, name, description, price
+    });
+    res.json(newSpot);
 });
 
 module.exports = router;
