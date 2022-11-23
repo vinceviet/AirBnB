@@ -6,7 +6,7 @@ const { Spot, User, Review, SpotImage, ReviewImage, sequelize } = require('../..
 // const user = require('../../db/models/user');
 const router = express.Router();
 
-const validatePost = [
+const validateSpotPost = [
     check('address').exists({ checkFalsy: true }).notEmpty().withMessage("Street address is required"),
     check('city').exists({ checkFalsy: true }).withMessage("City is required"),
     check('state').exists({ checkFalsy: true }).withMessage("State is required"),
@@ -16,6 +16,12 @@ const validatePost = [
     check('name').exists({ checkFalsy: true }).withMessage("Name must be less than 50 characters"),
     check('description').exists({ checkFalsy: true }).withMessage("Description is required"),
     check('price').exists({ checkFalsy: true }).withMessage("Price per day is required"),
+    handleValidationErrors
+];
+
+const validateReviewPost = [
+    check('review').exists({ checkFalsy: true }).notEmpty().withMessage("Review text is required"),
+    check('stars').exists({ checkFalsy: true }).notEmpty().withMessage("Stars must be an integer from 1 to 5"),
     handleValidationErrors
 ];
 
@@ -113,7 +119,7 @@ router.get('/:spotId', async (req, res) => {
     res.json(spot);
 });
 
-router.post('/', requireAuth, validatePost, checkIfAddressExists, async (req, res) => {
+router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({
         address, city, state, country, lat, lng, name, description, price, ownerId: req.user.id
@@ -130,7 +136,7 @@ router.post('/:spotId/images', async (req, res) => {
     res.json(scopedImage);
 });
 
-router.put('/:spotId', requireAuth, /*validatePost, checkIfAddressExists,*/ async (req, res) => {
+router.put('/:spotId', requireAuth, /*validateSpotPost, checkIfAddressExists,*/ async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
@@ -157,6 +163,25 @@ router.get('/:spotId/reviews', async (req, res) => {
     const spotReviewList = {};
     spotReviewList.Reviews = spotReviews;
     res.json(spotReviewList);
+});
+
+router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res) => {
+    let spot = await Spot.findByPk(req.params.spotId, {
+        include: { model: Review, attributes: ['userId'] }
+    });
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    spot = spot.toJSON()
+    for (let user of spot.Reviews) {
+        if (user.userId == req.user.id) return res.status(403).json({ message: "User already has a review for this spot", statusCode: 403 })
+    };
+    const { review, stars } = req.body;
+    const newReview = await Review.create({
+        userId: req.user.id,
+        spotId: spot.id,
+        review,
+        stars
+    });
+    res.json(newReview);
 });
 
 module.exports = router;
