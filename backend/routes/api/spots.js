@@ -3,7 +3,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
 const { Spot, User, Review, SpotImage, sequelize } = require('../../db/models');
-const user = require('../../db/models/user');
+// const user = require('../../db/models/user');
 const router = express.Router();
 
 const validatePost = [
