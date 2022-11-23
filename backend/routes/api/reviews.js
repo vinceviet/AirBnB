@@ -3,6 +3,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
 const { Spot, User, Review, ReviewImage, SpotImage, sequelize } = require('../../db/models');
+const { Op } = require('sequelize');
 const router = express.Router();
 
 router.get('/current', requireAuth, async (req, res) => {
@@ -28,6 +29,23 @@ router.get('/current', requireAuth, async (req, res) => {
         reviewList.Reviews = spot;
     };
     res.json(reviewList);
+});
+
+router.post('/:reviewId/images', async (req, res) => {
+    const review = await Review.findByPk(req.params.reviewId);
+    if (!review) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
+
+    const newImage = await ReviewImage.create({
+        url: req.body.url,
+        reviewId: req.params.reviewId
+    });
+
+    const reviewImages = await ReviewImage.count({ where: { reviewId: req.params.reviewId } });
+    if (reviewImages >= 10) return res.status(403).json({ message: "Maximum number of images for this resource was reached", statusCode: 403 });
+
+    const scopedImage = await ReviewImage.scope('createImage').findByPk(newImage.id);
+
+    res.json(scopedImage);
 });
 
 module.exports = router;
