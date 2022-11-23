@@ -2,7 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
-const { Spot, User, Review, SpotImage, sequelize } = require('../../db/models');
+const { Spot, User, Review, SpotImage, ReviewImage, sequelize } = require('../../db/models');
 // const user = require('../../db/models/user');
 const router = express.Router();
 
@@ -145,5 +145,18 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
     res.json({ message: "Successfully deleted", statusCode: 200 });
 });
 
+router.get('/:spotId/reviews', async (req, res) => {
+    const spotReviews = await Review.findAll({
+        where: { spotId: req.params.spotId },
+        include: [
+            { model: User, attributes: ['id', 'firstName', 'lastName'] },
+            { model: ReviewImage, attributes: ['id', 'url'] }
+        ]
+    });
+    if (!spotReviews) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    const spotReviewList = {};
+    spotReviewList.Reviews = spotReviews;
+    res.json(spotReviewList);
+});
 
 module.exports = router;
