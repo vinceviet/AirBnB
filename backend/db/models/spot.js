@@ -62,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: { min: 0 }
     },
     ownerId: {
+      allowNull: false,
       type: DataTypes.INTEGER
     },
   }, {

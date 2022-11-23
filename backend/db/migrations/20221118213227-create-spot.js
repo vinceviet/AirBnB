@@ -53,6 +53,7 @@ module.exports = {
         type: Sequelize.DECIMAL
       },
       ownerId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: 'Users' }
       },

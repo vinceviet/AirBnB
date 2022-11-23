@@ -113,10 +113,10 @@ router.get('/:spotId', async (req, res) => {
     res.json(spot);
 });
 
-router.post('/', validatePost, checkIfAddressExists, async (req, res) => {
+router.post('/', requireAuth, validatePost, checkIfAddressExists, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({
-        address, city, state, country, lat, lng, name, description, price
+        address, city, state, country, lat, lng, name, description, price, ownerId: req.user.id
     });
     res.json(newSpot);
 });
@@ -130,7 +130,11 @@ router.post('/:spotId/images', async (req, res) => {
     res.json(scopedImage);
 });
 
+// router.put('/:spotId', validatePost, checkIfAddressExists, async (req, res) => {
+//     const spot = await Spot.findByPk(req.params.spotId);
+//     const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+// });
 
 
 module.exports = router;
