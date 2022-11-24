@@ -127,7 +127,7 @@ router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, async (req
     res.json(newSpot);
 });
 
-router.post('/:spotId/images', async (req, res) => {
+router.post('/:spotId/images', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     const { url, preview } = req.body;
