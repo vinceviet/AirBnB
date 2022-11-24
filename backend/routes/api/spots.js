@@ -166,9 +166,7 @@ router.get('/:spotId/reviews', async (req, res) => {
 });
 
 router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res) => {
-    let spot = await Spot.findByPk(req.params.spotId, {
-        include: { model: Review, attributes: ['userId'] }
-    });
+    let spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     spot = spot.toJSON()
     for (let user of spot.Reviews) {
