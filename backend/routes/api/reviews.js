@@ -23,17 +23,19 @@ router.get('/current', requireAuth, async (req, res) => {
         ]
     });
     const spotPreviewImage = {};
+    const reviewArray = [];
     for (let spot of reviews) {
         const previewImage = await SpotImage.findOne({
             incldue: { model: Spot },
             attributes: ['url'],
-            where: { spotId: spot.id, preview: true }
+            where: { spotId: spot.spotId, preview: true }
         });
         spotPreviewImage.previewImage = previewImage.toJSON().url
         spot = spot.toJSON();
         Object.assign(spot.Spot, spotPreviewImage);
-        reviewList.Reviews = spot;
+        reviewArray.push(spot);
     };
+    reviewList.Reviews = reviewArray;
     res.json(reviewList);
 });
 

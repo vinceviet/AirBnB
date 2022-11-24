@@ -17,6 +17,18 @@ module.exports = {
         stars: 5
       },
       {
+        spotId: 2,
+        userId: 3,
+        review: "Worst place ever, the empolyees tried to arrest me.",
+        stars: 1
+      },
+      {
+        spotId: 3,
+        userId: 3,
+        review: 'Great spot, great people and ducks.',
+        stars: 5
+      },
+      {
         spotId: 1,
         userId: 2,
         review: 'Good sake and food but the chef is annoying.',
@@ -24,21 +36,9 @@ module.exports = {
       },
       {
         spotId: 2,
-        userId: 3,
-        review: "Worst place ever, the empolyee's tried to arrest me.",
-        stars: 1
-      },
-      {
-        spotId: 2,
         userId: 2,
         review: "Was ok, had to fight a giraffe person.",
         stars: 2
-      },
-      {
-        spotId: 3,
-        userId: 3,
-        review: 'Great spot, great people and ducks.',
-        stars: 5
       },
       {
         spotId: 3,
