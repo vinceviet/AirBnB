@@ -46,10 +46,19 @@ const checkIfAddressExists = (req, res, next) => {
     });
 };
 
+// Get all spots
 router.get('/', async (req, res) => {
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    page = Number(page);
+    size = Number(size);
+    if (isNaN(page) || page <= 0) page = 1;
+    if (page > 10) page = 10;
+    if (isNaN(size) || size <= 0) size = 20;
+    if (size > 20) size = 20;
+
     const spotContainer = [];
     const ratingAndImage = {};
-    let spots = await Spot.findAll();
+    let spots = await Spot.findAll({ limit: size, offset: size * (page - 1) });
     for (let spot of spots) {
         const avgRating = await Review.findOne({
             include: { model: Spot },
@@ -69,6 +78,8 @@ router.get('/', async (req, res) => {
     };
     const spotList = {};
     spotList.Spots = spotContainer;
+    spotList.page = page;
+    spotList.size = size;
 
     res.json(spotList)
 });
