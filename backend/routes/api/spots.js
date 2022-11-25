@@ -25,6 +25,10 @@ const validateReviewPost = [
     handleValidationErrors
 ];
 
+const validateBookingPost = [
+    check('endDate').exists({ checkFalsy: true }).notEmpty().isAfter('startDate').withMessage("endDate cannot be on or before startDate"),
+];
+
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
         if (spot) {
@@ -200,6 +204,20 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     //     bookingList.Bookings = bookingsOwner;
     //     return res.json(bookingList);
     // };
+});
+
+router.post('/:spotId/bookings', requireAuth, validateBookingPost, async (req, res) => {
+    let spotBookings = await Spot.findByPk(req.params.spotId, {
+        attributes: [],
+        include: { model: Booking }
+    });
+    if (!spotBookings) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    res.json(spotBookings);
+    spotBookings = spotBookings.toJSON();
+    let bookingDetails = spotBookings.Bookings[0];
+    const bookingStartDate = bookingDetails.startDate.toDateString();
+    const bookingEndDate = bookingDetails.endDate.toDateString();
+    console.log(bookingStartDate, bookingEndDate);
 });
 
 module.exports = router;
