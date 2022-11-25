@@ -2,7 +2,7 @@ const express = require('express');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
-const { Spot, User, Review, SpotImage, ReviewImage, sequelize } = require('../../db/models');
+const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize } = require('../../db/models');
 // const user = require('../../db/models/user');
 const router = express.Router();
 
@@ -180,6 +180,26 @@ router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res
         stars
     });
     res.json(newReview);
+});
+
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    const bookingList = {};
+    const bookingsNonOwner = await Booking.findAll({
+        where: { spotId: req.params.spotId },
+        attributes: ['spotId', 'startDate', 'endDate']
+    });
+    if (!bookingsNonOwner) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    const bookingsOwner = await Booking.findAll({
+        include: { model: User, attributes: ['id', 'firstName', 'lastName'] }
+    });
+    // if(!'ownerplaceholder') {
+    // bookingList.Bookings = bookingsNonOwner;
+    // return res.json(bookingList);
+    // };
+    // if ('isownerplaceholder') {
+    //     bookingList.Bookings = bookingsOwner;
+    //     return res.json(bookingList);
+    // };
 });
 
 module.exports = router;
