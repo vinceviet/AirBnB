@@ -36,7 +36,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     if (startDate >= endDate) return res.status(400).json({ message: "Validation error", statusCode: 400, errors: { endDate: "endDate cannot be on or before startDate" } });
     if (Date.parse(endDate) < Date.now()) return res.status(403).json({ messsage: "Past bookings can't be modified", statusCode: 403 });
-    
+
     let spot = await Spot.findByPk(booking.spotId, {
         include: { model: Booking }
     });
@@ -54,6 +54,14 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     };
     const updateBooking = await booking.update({ startDate, endDate });
     res.json(updateBooking);
+});
+
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+    const booking = await Booking.findByPk(req.params.bookingId);
+    if (!booking) return res.status(404).json({ message: "Booking couldn't be found", statusCode: 404 });
+    if (Date.parse(Booking.startDate) > Date.now()) return res.status(403).json({ message: "Bookings that have been started can't be deleted", statusCode: 403 });
+    await booking.destroy();
+    res.json({ message: "Successfully deleted", statusCode: 200 });
 });
 
 
