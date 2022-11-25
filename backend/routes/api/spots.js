@@ -3,6 +3,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
 const { Spot, User, Review, SpotImage, ReviewImage, Booking, sequelize } = require('../../db/models');
+const { Op } = require('sequelize');
 // const user = require('../../db/models/user');
 const router = express.Router();
 
@@ -25,9 +26,9 @@ const validateReviewPost = [
     handleValidationErrors
 ];
 
-const validateBookingPost = [
-    check('endDate').exists({ checkFalsy: true }).notEmpty().isAfter('startDate').withMessage("endDate cannot be on or before startDate"),
-];
+// const validateBookingPost = [
+//     check('endDate').exists({ checkFalsy: true }).notEmpty().isAfter('startDate').withMessage("endDate cannot be on or before startDate"),
+// ];
 
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
@@ -206,18 +207,31 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     // };
 });
 
-router.post('/:spotId/bookings', requireAuth, validateBookingPost, async (req, res) => {
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     let spotBookings = await Spot.findByPk(req.params.spotId, {
         attributes: [],
         include: { model: Booking }
     });
     if (!spotBookings) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
-    res.json(spotBookings);
+    const { startDate, endDate } = req.body;
+    if (startDate >= endDate) return res.status(400).json({ message: "Validation error", statusCode: 400, errors: { endDate: "endDate cannot be on or before startDate" } });
+    let newBooking = await Booking.create({
+        spotId: +req.params.spotId, userId: req.user.id, startDate, endDate
+    });
+
     spotBookings = spotBookings.toJSON();
-    let bookingDetails = spotBookings.Bookings[0];
-    const bookingStartDate = bookingDetails.startDate.toDateString();
-    const bookingEndDate = bookingDetails.endDate.toDateString();
-    console.log(bookingStartDate, bookingEndDate);
+    let bookingList = spotBookings.Bookings;
+    for (let booking of bookingList) {
+        if (Date.parse(startDate) >= Date.parse(booking.startDate) && Date.parse(endDate) <= Date.parse(booking.endDate)) {
+            return res.status(403).json({
+                message: "Sorry, this spot is already booked for the specifed dates",
+                statusCode: 403,
+                errors: { startDate: "Start date conflicts with an existing booking", endDate: "End date conflicts with an existing booking" }
+            });
+        };
+    };
+
+    res.json(newBooking);
 });
 
 module.exports = router;
