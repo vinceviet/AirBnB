@@ -26,9 +26,14 @@ const validateReviewPost = [
     handleValidationErrors
 ];
 
+const validateGetAllSpotQueries = [
+
+];
+
 // const validateBookingPost = [
 //     check('endDate').exists({ checkFalsy: true }).notEmpty().isAfter('startDate').withMessage("endDate cannot be on or before startDate"),
 // ];
+
 
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
