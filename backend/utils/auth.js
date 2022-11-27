@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Spot } = require('../db/models');
 const { secret, expiresIn } = jwtConfig;
 
 const setTokenCookie = (res, user) => {
@@ -52,12 +52,16 @@ const requireAuth = function (req, _res, next) {
     return next(err);
 };
 
-const requireAuthorization = (req, _res, next) => {
-    // if (req.user) return next();
+// const ownerCheck = (req, _res, next) => {
+//     let user = User.findByPk(req.user.id, {
+//         include: { model: Spot }
+//     });
+//     user = user.toJSON();
+//     const spotDetails = user.Spot
+//     if (spotDetails.ownerId == req.user.id) return next()
+//     const err = new Error("Forbidden");
+//     err.status = 403;
+//     return next(err);
+// };
 
-    const err = new Error("Forbidden");
-    err.status = 403;
-    return next(err);
-};
-
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, requireAuth, ownerCheck };
