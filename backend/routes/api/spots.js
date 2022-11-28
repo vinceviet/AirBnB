@@ -158,7 +158,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 });
 
 // Edit a Spot // need auth
-router.put('/:spotId', requireAuth, validateSpotPost, checkIfAddressExists, async (req, res) => {
+router.put('/:spotId', requireAuth, validateSpotPost, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     if (spot.toJSON().ownerId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
@@ -179,6 +179,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
 // Get all Reviews by a Spot's id
 router.get('/:spotId/reviews', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId)
     const spotReviews = await Review.findAll({
         where: { spotId: req.params.spotId },
         include: [
@@ -186,7 +187,7 @@ router.get('/:spotId/reviews', async (req, res) => {
             { model: ReviewImage, attributes: ['id', 'url'] }
         ]
     });
-    if (!spotReviews) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     const spotReviewList = {};
     spotReviewList.Reviews = spotReviews;
     res.json(spotReviewList);
