@@ -97,7 +97,7 @@ router.get('/', async (req, res) => {
 
     const spotContainer = [];
     const ratingAndImage = {};
-    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1) });
+    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1), group: 'Spot.id' });
     for (let spot of spots) {
         const avgRating = await Review.findOne({
             include: { model: Spot },
