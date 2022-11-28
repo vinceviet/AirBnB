@@ -102,8 +102,8 @@ router.get('/', async (req, res) => {
         const avgRating = await Review.findOne({
             include: { model: Spot },
             attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
-            where: { spotId: spot.id }
-            // group: 'Review.id'
+            where: { spotId: spot.id },
+            group: 'Review.id'
         });
         const previewImage = await SpotImage.findOne({
             incldue: { model: Spot },
