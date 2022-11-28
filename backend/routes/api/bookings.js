@@ -13,7 +13,6 @@ router.get('/current', requireAuth, async (req, res) => {
         where: { userId: req.user.id },
         include: { model: Spot, attributes: { exclude: ['createdAt', 'updatedAt'] } }
     });
-    console.log(await Booking.findByPk(1));
     const spotPreviewImage = {};
     const bookingArray = [];
     for (let spot of bookings) {
