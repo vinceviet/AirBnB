@@ -26,6 +26,11 @@ const validateReviewPost = [
     handleValidationErrors
 ];
 
+const validateDates = [
+    check('startDate').exists({ checkFalsy: true }).notEmpty().isDate().withMessage("Invalid date"),
+    check('endDate').exists({ checkFalsy: true }).notEmpty().isDate().withMessage("Invalid date"),
+    handleValidationErrors
+];
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
         if (spot) {
@@ -56,7 +61,6 @@ router.get('/', async (req, res) => {
     const ratingAndImage = {};
     let spots = await Spot.findAll({ limit: size, offset: size * (page - 1) });
     for (let spot of spots) {
-        // console.log(spot)
         const avgRating = await Review.findOne({
             include: { model: Spot },
             attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
@@ -235,7 +239,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 });
 
 // Create a Booking from a Spot based on the Spot's id // need auth specific
-router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+router.post('/:spotId/bookings', requireAuth, validateDates, async (req, res) => {
     let spotBookings = await Spot.findByPk(req.params.spotId, {
         attributes: [],
         include: { model: Booking }
@@ -252,11 +256,19 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     spotBookings = spotBookings.toJSON();
     let bookingList = spotBookings.Bookings;
     for (let booking of bookingList) {
-        if (Date.parse(startDate) >= Date.parse(booking.startDate) && Date.parse(endDate) <= Date.parse(booking.endDate)) {
+        console.log(booking)
+        if (Date.parse(startDate) >= Date.parse(booking.startDate) && Date.parse(startDate <= Date.parse(booking.endDate))) {
             return res.status(403).json({
                 message: "Sorry, this spot is already booked for the specifed dates",
                 statusCode: 403,
-                errors: { startDate: "Start date conflicts with an existing booking", endDate: "End date conflicts with an existing booking" }
+                errors: { startDate: "Start date conflicts with an existing booking" }
+            });
+        };
+        if (Date.parse(endDate) <= Date.parse(booking.endDate) && Date.parse(startDate) >= Date.parse(booking.startDate)) {
+            return res.status(403).json({
+                message: "Sorry, this spot is already booked for the specifed dates",
+                statusCode: 403,
+                errors: { endDate: "End date conflicts with an existing booking" }
             });
         };
     };
