@@ -6,6 +6,7 @@ const { Booking, Spot, SpotImage, User, Review, sequelize } = require('../../db/
 const { Op } = require('sequelize');
 const router = express.Router();
 
+// Get all of the Current User's Bookings
 router.get('/current', requireAuth, async (req, res) => {
     const bookingList = {};
     const bookings = await Booking.findAll({
@@ -29,6 +30,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json(bookingList);
 });
 
+// Edit a Booking // need auth
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId);
     if (!booking) return res.status(404).json({ message: "Booking couldn't be found", statusCode: 404 });
@@ -56,6 +58,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     res.json(updateBooking);
 });
 
+// Delete a Booking // need auth
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId);
     if (!booking) return res.status(404).json({ message: "Booking couldn't be found", statusCode: 404 });
