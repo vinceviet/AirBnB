@@ -239,7 +239,6 @@ router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res
     });
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     spot = spot.toJSON()
-    console.log(spot);
     for (let user of spot.Reviews) {
         if (user.userId == req.user.id) return res.status(403).json({ message: "User already has a review for this spot", statusCode: 403 })
     };
@@ -283,7 +282,6 @@ router.post('/:spotId/bookings', requireAuth, validateDates, async (req, res) =>
         include: { model: Booking }
     });
     if (!spotBookings) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
-    console.log(spotBookings)
     if (spotBookings.toJSON().ownerId === req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
 
     const { startDate, endDate } = req.body;
