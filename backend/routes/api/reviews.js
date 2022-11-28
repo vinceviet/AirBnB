@@ -31,7 +31,7 @@ router.get('/current', requireAuth, async (req, res) => {
             attributes: ['url'],
             where: { spotId: spot.spotId, preview: true }
         });
-        spotPreviewImage.previewImage = previewImage.toJSON().url
+        if (previewImage !== null) spotPreviewImage.previewImage = previewImage.toJSON().url
         spot = spot.toJSON();
         Object.assign(spot.Spot, spotPreviewImage);
         reviewArray.push(spot);

@@ -67,7 +67,7 @@ router.get('/', async (req, res) => {
     maxLng = Number(maxLng);
     minPrice = Number(minPrice);
     maxPrice = Number(maxPrice);
-    
+
     if (minLat && minLat >= -90 && minLat <= 90 && maxLat && maxLat >= -90 && maxLat <= 90 && minLat < maxLat) where.lat = { [Op.between]: [minLat, maxLat] };
     else if (minLat > maxLat) errors.errors.minLat = "Minimum latitude is invalid";
     else if (maxLat < minLat) errors.errors.maxLat = "Maximum latitude is invalid";
@@ -262,6 +262,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
         attributes: ['spotId', 'startDate', 'endDate']
     });
     const bookingsOwner = await Booking.findAll({
+        where: { spotId: req.params.spotId },
         include: { model: User, attributes: ['id', 'firstName', 'lastName'] }
     });
     if (spot.toJSON().ownerId !== req.user.id) {
@@ -277,10 +278,11 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 // Create a Booking from a Spot based on the Spot's id // need auth specific
 router.post('/:spotId/bookings', requireAuth, validateDates, async (req, res) => {
     let spotBookings = await Spot.findByPk(req.params.spotId, {
-        attributes: [],
+        attributes: ['ownerId'],
         include: { model: Booking }
     });
     if (!spotBookings) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
+    console.log(spotBookings)
     if (spotBookings.toJSON().ownerId === req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
 
     const { startDate, endDate } = req.body;
@@ -292,8 +294,7 @@ router.post('/:spotId/bookings', requireAuth, validateDates, async (req, res) =>
     spotBookings = spotBookings.toJSON();
     let bookingList = spotBookings.Bookings;
     for (let booking of bookingList) {
-        console.log(booking)
-        if (Date.parse(startDate) >= Date.parse(booking.startDate) && Date.parse(startDate <= Date.parse(booking.endDate))) {
+        if (Date.parse(startDate) >= Date.parse(booking.startDate) && Date.parse(startDate) <= Date.parse(booking.endDate)) {
             return res.status(403).json({
                 message: "Sorry, this spot is already booked for the specifed dates",
                 statusCode: 403,
