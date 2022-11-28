@@ -43,7 +43,9 @@ router.get('/current', requireAuth, async (req, res) => {
 // Add an Image to a Review based on the Review's id // need auth
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId);
+    console.log(review);
     if (!review) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
+    if (review.toJSON().userId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
 
     const newImage = await ReviewImage.create({
         url: req.body.url,
@@ -60,6 +62,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     const reviewId = await Review.findByPk(req.params.reviewId);
     if (!reviewId) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
+    if (reviewId.toJSON().userId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
     const { review, stars } = req.body;
     const editedReview = await reviewId.update({ review, stars });
     res.json(editedReview);
@@ -69,6 +72,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId);
     if (!review) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
+    if (review.toJSON().userId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
     await review.destroy();
     res.json({ message: "Successfully deleted", statusCode: 200 });
 });

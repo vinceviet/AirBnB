@@ -25,13 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     startDate: {
       allowNull: false,
-      type: DataTypes.DATE
-      // add validate dates
+      type: DataTypes.DATEONLY
     },
     endDate: {
       allowNull: false,
-      type: DataTypes.DATE
-      // add validate dates
+      type: DataTypes.DATEONLY
     },
   }, {
     sequelize,

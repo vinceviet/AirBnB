@@ -30,10 +30,6 @@ const validateGetAllSpotQueries = [
 
 ];
 
-// const validateBookingPost = [
-//     check('endDate').exists({ checkFalsy: true }).notEmpty().isAfter('startDate').withMessage("endDate cannot be on or before startDate"),
-// ];
-
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
         if (spot) {
@@ -198,9 +194,12 @@ router.get('/:spotId/reviews', async (req, res) => {
 
 // Create a Review for a Spot based on the the Spot's id
 router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res) => {
-    let spot = await Spot.findByPk(req.params.spotId);
+    let spot = await Spot.findByPk(req.params.spotId, {
+        include: { model: Review }
+    });
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     spot = spot.toJSON()
+    console.log(spot);
     for (let user of spot.Reviews) {
         if (user.userId == req.user.id) return res.status(403).json({ message: "User already has a review for this spot", statusCode: 403 })
     };
