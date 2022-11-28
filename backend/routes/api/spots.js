@@ -26,10 +26,6 @@ const validateReviewPost = [
     handleValidationErrors
 ];
 
-const validateGetAllSpotQueries = [
-
-];
-
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
         if (spot) {
@@ -60,6 +56,7 @@ router.get('/', async (req, res) => {
     const ratingAndImage = {};
     let spots = await Spot.findAll({ limit: size, offset: size * (page - 1) });
     for (let spot of spots) {
+        // console.log(spot)
         const avgRating = await Review.findOne({
             include: { model: Spot },
             attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
@@ -70,8 +67,9 @@ router.get('/', async (req, res) => {
             attributes: ['url'],
             where: { spotId: spot.id, preview: true }
         });
-        ratingAndImage.avgRating = avgRating.toJSON().avgRating;
-        ratingAndImage.previewImage = previewImage.toJSON().url;
+        console.log(previewImage)
+        if (avgRating !== null) ratingAndImage.avgRating = avgRating.toJSON().avgRating;
+        if (previewImage !== null) ratingAndImage.previewImage = previewImage.toJSON().url;
         spot = spot.toJSON();
         Object.assign(spot, ratingAndImage);
         spotContainer.push(spot)
@@ -103,8 +101,8 @@ router.get('/current', requireAuth, async (req, res) => {
             attributes: ['url'],
             where: { spotId: spot.id, preview: true }
         });
-        ratingAndImage.avgRating = avgRating.toJSON().avgRating;
-        ratingAndImage.previewImage = previewImage.toJSON().url;
+        if (avgRating !== null) ratingAndImage.avgRating = avgRating.toJSON().avgRating;
+        if (previewImage !== null) ratingAndImage.previewImage = previewImage.toJSON().url;
         spot = spot.toJSON();
         Object.assign(spot, ratingAndImage);
         spotContainer.push(spot)
