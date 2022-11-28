@@ -40,7 +40,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json(reviewList);
 });
 
-// Add an Image to a Review based on the Review's id // need auth
+// Add an Image to a Review based on the Review's id
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId);
     if (!review) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
@@ -57,7 +57,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     res.json(scopedImage);
 });
 
-// Edit a Reivew // need auth
+// Edit a Reivew
 router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     const reviewId = await Review.findByPk(req.params.reviewId);
     if (!reviewId) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
@@ -67,7 +67,7 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
     res.json(editedReview);
 });
 
-// Delete a Review // need auth
+// Delete a Review
 router.delete('/:reviewId', requireAuth, async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId);
     if (!review) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });

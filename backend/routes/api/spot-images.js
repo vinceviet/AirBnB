@@ -3,7 +3,7 @@ const { requireAuth } = require('../../utils/auth.js');
 const { SpotImage, Spot } = require('../../db/models');
 const router = express.Router();
 
-// Delete a Spot Image // need auth
+// Delete a Spot Image
 router.delete('/:imageId', requireAuth, async (req, res) => {
     let img = await SpotImage.findByPk(req.params.imageId, {
         include: { model: Spot }

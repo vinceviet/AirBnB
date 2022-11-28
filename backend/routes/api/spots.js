@@ -31,6 +31,7 @@ const validateDates = [
     check('endDate').exists({ checkFalsy: true }).notEmpty().isDate().withMessage("Invalid date"),
     handleValidationErrors
 ];
+
 const checkIfAddressExists = (req, res, next) => {
     Spot.findOne({ where: { address: req.body.address } }).then(spot => {
         if (spot) {
@@ -184,7 +185,7 @@ router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, async (req
     res.json(newSpot);
 });
 
-// Add an Image to a Spot based on the Spot's id // need auth
+// Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
@@ -195,7 +196,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     res.json(scopedImage);
 });
 
-// Edit a Spot // need auth
+// Edit a Spot
 router.put('/:spotId', requireAuth, validateSpotPost, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
@@ -206,7 +207,7 @@ router.put('/:spotId', requireAuth, validateSpotPost, async (req, res) => {
 
 });
 
-// Delete a Spot // need auth
+// Delete a Spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
@@ -252,7 +253,7 @@ router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res
     res.json(newReview);
 });
 
-// Get all Bookings for a Spot based on the Spot's id // need auth specifics
+// Get all Bookings for a Spot based on the Spot's id
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     const bookingList = {};
     let spot = await Spot.findByPk(req.params.spotId);
@@ -275,7 +276,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     };
 });
 
-// Create a Booking from a Spot based on the Spot's id // need auth specific
+// Create a Booking from a Spot based on the Spot's id
 router.post('/:spotId/bookings', requireAuth, validateDates, async (req, res) => {
     let spotBookings = await Spot.findByPk(req.params.spotId, {
         attributes: ['ownerId'],

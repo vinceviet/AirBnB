@@ -6,6 +6,12 @@ const { Booking, Spot, SpotImage, User, Review, sequelize } = require('../../db/
 const { Op } = require('sequelize');
 const router = express.Router();
 
+const validateDates = [
+    check('startDate').exists({ checkFalsy: true }).notEmpty().isDate().withMessage("Invalid date"),
+    check('endDate').exists({ checkFalsy: true }).notEmpty().isDate().withMessage("Invalid date"),
+    handleValidationErrors
+];
+
 // Get all of the Current User's Bookings
 router.get('/current', requireAuth, async (req, res) => {
     const bookingList = {};
@@ -29,8 +35,8 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json(bookingList);
 });
 
-// Edit a Booking // need auth
-router.put('/:bookingId', requireAuth, async (req, res) => {
+// Edit a Booking
+router.put('/:bookingId', requireAuth, validateDates, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId);
     if (!booking) return res.status(404).json({ message: "Booking couldn't be found", statusCode: 404 });
     if (booking.toJSON().userId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
@@ -57,7 +63,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     res.json(updateBooking);
 });
 
-// Delete a Booking // need auth
+// Delete a Booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId);
     if (!booking) return res.status(404).json({ message: "Booking couldn't be found", statusCode: 404 });
