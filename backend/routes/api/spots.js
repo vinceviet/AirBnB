@@ -88,6 +88,7 @@ router.get('/', async (req, res) => {
     res.json(spotList)
 });
 
+// Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
     const spotContainer = [];
     const ratingAndImage = {};
