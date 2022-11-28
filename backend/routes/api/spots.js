@@ -49,17 +49,54 @@ const checkIfAddressExists = (req, res, next) => {
 
 // Get all spots
 router.get('/', async (req, res) => {
+    let errors = { message: 'Validation Error', statusCode: 400, errors: {} }
     let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    const where = {};
+    if (!page) page = 1;
+    if (!size) size = 20;
     page = Number(page);
     size = Number(size);
-    if (isNaN(page) || page <= 0) page = 1;
+    if (isNaN(page) || page <= 0) errors.errors.page = "Page must be greater than or equal to 1";
     if (page > 10) page = 10;
-    if (isNaN(size) || size <= 0) size = 20;
+    if (isNaN(size) || size <= 0) errors.errors.size = "Size must be greater than or equal to 1";
     if (size > 20) size = 20;
+
+    minLat = Number(minLat);
+    maxLat = Number(maxLat);
+    minLng = Number(minLng);
+    maxLng = Number(maxLng);
+    minPrice = Number(minPrice);
+    maxPrice = Number(maxPrice);
+    
+    if (minLat && minLat >= -90 && minLat <= 90 && maxLat && maxLat >= -90 && maxLat <= 90 && minLat < maxLat) where.lat = { [Op.between]: [minLat, maxLat] };
+    else if (minLat > maxLat) errors.errors.minLat = "Minimum latitude is invalid";
+    else if (maxLat < minLat) errors.errors.maxLat = "Maximum latitude is invalid";
+    else if (minLat && minLat >= -90 && minLat <= 90 && !maxLat) where.lat = { [Op.gte]: minLat };
+    else if (minLat) errors.errors.minLat = "Minimum latitude is invalid";
+    else if (maxLat && maxLat >= -90 && maxLat <= 90 && !minLat) where.lat = { [Op.lte]: maxLat };
+    else if (maxLat) errors.errors.maxLat = "Maximum latitude is invalid";
+
+    if (minLng && minLng >= -180 && minLng <= 180 && maxLng && maxLng >= -180 && maxLng <= 180 && minLng < maxLng) where.lng = { [Op.between]: [minLng, maxLng] };
+    else if (minLng > maxLng) errors.errors.minLng = "Minimum longitude is invalid";
+    else if (maxLng < minLng) errors.errors.maxLng = "Maximum longitude is invalid";
+    else if (minLng && minLng >= -180 && minLng <= 180 && !maxLng) where.lng = { [Op.gte]: minLng };
+    else if (minLng) errors.errors.minLng = "Minimum longitude is invalid";
+    else if (maxLng && maxLng >= -180 && maxLng <= 180 && !minLng) where.lng = { [Op.lte]: maxLng };
+    else if (maxLng) errors.errors.maxLng = "Maximum longitude is invalid";
+
+    if (minPrice && minPrice >= 0 && maxPrice && maxPrice >= 0 && minPrice < maxPrice) where.price = { [Op.between]: [minPrice, maxPrice] };
+    else if (minPrice >= maxPrice) errors.errors.minPrice = "Minimum price is invalid";
+    else if (maxPrice <= minPrice) errors.errors.maxPrice = "Maximum price is invalid";
+    else if (minPrice && minPrice >= 0 && !maxPrice) where.price = { [Op.gte]: minPrice };
+    else if (minPrice) errors.errors.minPrice = "Minimum price must be greater than or equal to 0";
+    else if (maxPrice && maxPrice >= 0 && !minPrice) where.price = { [Op.lte]: maxPrice };
+    else if (maxPrice) errors.errors.maxPrice = "Maximum price must be greater than or equal to 0";
+
+    if (JSON.stringify(errors.errors) === '{}' === false) return res.status(400).json(errors);
 
     const spotContainer = [];
     const ratingAndImage = {};
-    let spots = await Spot.findAll({ limit: size, offset: size * (page - 1) });
+    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1) });
     for (let spot of spots) {
         const avgRating = await Review.findOne({
             include: { model: Spot },
@@ -71,7 +108,6 @@ router.get('/', async (req, res) => {
             attributes: ['url'],
             where: { spotId: spot.id, preview: true }
         });
-        console.log(previewImage)
         if (avgRating !== null) ratingAndImage.avgRating = avgRating.toJSON().avgRating;
         if (previewImage !== null) ratingAndImage.previewImage = previewImage.toJSON().url;
         spot = spot.toJSON();
