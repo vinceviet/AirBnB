@@ -97,7 +97,7 @@ router.get('/', async (req, res) => {
 
     const spotContainer = [];
     const ratingAndImage = {};
-    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1), group: ['Spot.id'] });
+    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1), group: ['spotId'] });
     for (let spot of spots) {
         const avgRating = await Review.findOne({
             attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
@@ -131,12 +131,10 @@ router.get('/current', requireAuth, async (req, res) => {
     });
     for (let spot of currentUserSpots) {
         const avgRating = await Review.findOne({
-            include: { model: Spot },
             attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
             where: { spotId: spot.id }
         });
         const previewImage = await SpotImage.findOne({
-            incldue: { model: Spot },
             attributes: ['url'],
             where: { spotId: spot.id, preview: true }
         });
