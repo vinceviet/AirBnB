@@ -97,7 +97,7 @@ router.get('/', async (req, res) => {
 
     const spotContainer = [];
     const ratingAndImage = {};
-    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1)});
+    let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1) });
     for (let spot of spots) {
         const avgRating = await Review.findOne({
             include: { model: Spot },
@@ -108,8 +108,8 @@ router.get('/', async (req, res) => {
         const previewImage = await SpotImage.findOne({
             incldue: { model: Spot },
             attributes: ['url'],
-            where: { spotId: spot.id, preview: true }
-            // group: 'SpotImage.id'
+            where: { spotId: spot.id, preview: true },
+            group: 'Spot.id'
         });
         if (avgRating !== null) ratingAndImage.avgRating = avgRating.toJSON().avgRating;
         if (previewImage !== null) ratingAndImage.previewImage = previewImage.toJSON().url;
