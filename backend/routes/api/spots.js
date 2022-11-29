@@ -160,7 +160,6 @@ router.get('/:spotId', async (req, res) => {
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     const reviewStats = {};
     const avgStarRating = await Review.findOne({
-        include: { model: Spot },
         attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgStarRating']],
         where: { spotId: req.params.spotId }
     });
