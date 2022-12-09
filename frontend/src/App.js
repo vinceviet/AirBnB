@@ -1,7 +1,13 @@
-function App() {
-  return (
-    <h1>Hello from App</h1>
-  );
-}
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import LoginFormPage from './components/LoginFormPage';
 
-export default App;
+export default function App() {
+  return (
+    <Switch>
+      <Route path="/login">
+        <LoginFormPage />
+      </Route>
+    </Switch>
+  );
+};
