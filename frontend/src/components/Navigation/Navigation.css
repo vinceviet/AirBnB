@@ -5,3 +5,12 @@
 .hidden {
     display: none;
 }
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .login-signup {
+
+} */
