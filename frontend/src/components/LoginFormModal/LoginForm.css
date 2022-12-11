@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.login-inputs {
+    text-align: center;
+    padding: 24px;
+}
+
+#login-button {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    border-radius: 6px;
+    background-color: rgb(255, 56, 92);
+}
