@@ -1,29 +1,35 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import {useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/spotsReducer';
 import './HomePage.css'
+import SpotDetails from '../SpotDetails/SpotDetails';
 
 export default function HomePage() {
     const dispatch = useDispatch();
     const spots = Object.values(useSelector(state => state.spots));
-    console.log('homepage', spots);
-    useEffect(() =>{
+    useEffect(() => {
         dispatch(getAllSpots(spots))
     }, []);
     return (
+        <>
         <div className="spots-list">
-        {spots.map(spot => {
-            return (
-        <div>
-            <NavLink className="spot-cards" to={`/api/spots/${spot.id}`}>
-            <img className="item1" src={spot.previewImage} alt={spot.previewImage} />
-            <span className="item2">{`${spot.city}, ${spot.state}`}</span>
-            <span className="item3"><i class="fas fa-sharp fa-solid fa-star" />{spot.avgRating}</span>
-            <span className="item4">{`$${spot.price} night`}</span>
-            </NavLink>
+            {spots.map(spot => {
+                return (
+                    <div>
+                        <NavLink className="spot-cards" to={`/api/spots/${spot.id}`}>
+                            <img className="item1" src={spot.previewImage} alt={spot.previewImage} />
+                            <span className="item2">{`${spot.city}, ${spot.state}`}</span>
+                            <span className="item3"><i class="fas fa-sharp fa-solid fa-star" />{spot.avgRating}</span>
+                            <span className="item4">{`$${spot.price} night`}</span>
+                        </NavLink>
+                    </div>
+                )
+            })}
         </div>
-)})}
-        </div>
+        <Route path="/api/spots/:spotId">
+            <SpotDetails />
+        </Route>
+        </>
     );
 };

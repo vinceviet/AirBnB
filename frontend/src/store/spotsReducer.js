@@ -9,7 +9,6 @@ export const getAllSpots = () => async dispatch => {
     const res = await fetch('/api/spots');
     if (res.ok) {
         const spots = await res.json();
-        console.log('fetch', spots.Spots)
         dispatch(load(spots.Spots));
     };
 };
