@@ -5,11 +5,11 @@ const load = spots => ({
     type: LOAD_SPOTS, spots
 });
 
-export const getAllSpots = () => async disptach => {
+export const getAllSpots = () => async dispatch => {
     const res = await fetch('/api/spots');
     if (res.ok) {
         const spots = await res.json();
-        dispatc(load(spots));
+        dispatch(load(spots));
     };
 };
 

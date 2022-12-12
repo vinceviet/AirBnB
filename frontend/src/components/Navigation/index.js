@@ -11,9 +11,9 @@ function Navigation({ isLoaded }){
   return (
     <div className="nav-links">
       <div>
-        <NavLink id="home-link" exact to="/">
+        <NavLink exact to="/">
           <img id="home-logo" src={logo} alt="onebnb logo" />
-           onebnb</NavLink>
+        </NavLink>
       </div>
       {isLoaded && (
         <div>

@@ -5,6 +5,8 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
+import barsIcon from "../../assets/bars-solid.svg";
+import userIcon from "../../assets/circle-user-solid.svg";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,8 +45,8 @@ function ProfileButton({ user }) {
   return (
     <>
       <button id="menu-items" onClick={openMenu}>
-        <i id="fa-bars" className="fas fa-solid fa-bars" />
-        <i id="user-circle" className="fas fa-user-circle" />
+        <img id="bars-icon" src={barsIcon} alt="fa-bars" />
+        <img id="user-icon" src={userIcon} alt="user-icon" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
