@@ -7,6 +7,10 @@
     padding: 24px;
 }
 
+#modal-content{
+    border-radius: 12px;
+}
+
 #login-button {
     display: block;
     width: 100%;

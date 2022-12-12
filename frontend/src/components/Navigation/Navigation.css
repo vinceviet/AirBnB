@@ -1,6 +1,11 @@
 .profile-dropdown {
     position: absolute;
     right: 80px;
+    background-color: white;
+    border: solid rgb(227, 220, 220) 1px;
+    border-radius: 12px;
+    list-style: none;
+    padding: 15px 50px 15px 10px;
 }
 
 .hidden {
@@ -28,15 +33,26 @@
     width: 45px;
 }
 
-#menu-items{
-    width: 60px;
-    height: 40px;
+#menu-items {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80px;
+    height: 45px;
     border-radius: 16px;
     background-color: white;
-    border-color:rgb(196, 185, 185);
+    border-color: rgb(196, 185, 185);
     box-shadow: none;
 }
 
-#fa-bars{
-    padding-right: 10px;
+#menu-items:hover {
+    box-shadow: 0 2px 5px rgb(184, 178, 178);
+}
+
+.login-signup>li {
+    padding: 10px;
+}
+
+.login-signup>li:hover {
+    background-color: rgb(227, 221, 221);
 }
