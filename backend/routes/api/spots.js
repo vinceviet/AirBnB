@@ -1,4 +1,5 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
@@ -49,7 +50,7 @@ const checkIfAddressExists = (req, res, next) => {
 };
 
 // Get all spots
-router.get('/', async (req, res) => {
+router.get('/', asyncHandler(async (req, res) => {
     let errors = { message: 'Validation Error', statusCode: 400, errors: {} }
     let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
     const where = {};
@@ -119,7 +120,7 @@ router.get('/', async (req, res) => {
     spotList.size = size;
 
     res.json(spotList)
-});
+}));
 
 // Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
