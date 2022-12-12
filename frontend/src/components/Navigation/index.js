@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import logo from "../../assets/onebnb-logo.png"
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -10,7 +11,9 @@ function Navigation({ isLoaded }){
   return (
     <div className="nav-links">
       <div>
-        <NavLink exact to="/">onebnb</NavLink>
+        <NavLink id="home-link" exact to="/">
+          <img id="home-logo" src={logo} alt="onebnb logo" />
+           onebnb</NavLink>
       </div>
       {isLoaded && (
         <div>

@@ -1,5 +1,6 @@
 .profile-dropdown {
     position: absolute;
+    right: 80px;
 }
 
 .hidden {
@@ -9,8 +10,33 @@
 .nav-links {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-bottom: solid rgb(196, 185, 185) 1px;
+    padding: 0 80px 20px 80px;
 }
 
-/* .login-signup {
+#home-link {
+    display: flex;
+    color: rgb(255, 56, 92);
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: none;
+    align-items: center;
+}
 
-} */
+#home-logo {
+    width: 45px;
+}
+
+#menu-items{
+    width: 60px;
+    height: 40px;
+    border-radius: 16px;
+    background-color: white;
+    border-color:rgb(196, 185, 185);
+    box-shadow: none;
+}
+
+#fa-bars{
+    padding-right: 10px;
+}

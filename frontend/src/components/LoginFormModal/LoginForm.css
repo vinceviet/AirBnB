@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-.login-inputs {
+#login-inputs {
     text-align: center;
     padding: 24px;
 }
