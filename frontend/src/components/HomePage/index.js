@@ -1,4 +1,4 @@
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/spotsReducer';
@@ -12,13 +12,18 @@ export default function HomePage() {
         dispatch(getAllSpots(spots))
     }, []);
     return (
-        <>
+        <div className="spots-list">
         {spots.map(spot => {
             return (
         <div>
-            {spot.previewImage}
+            <NavLink to={`/api/spots/${spot.id}`}>
+            <span>{spot.city}{spot.state}</span>
+            <img src={spot.previewImage} alt="spot1-image" />
+            <span>{spot.avgRating}</span>
+            <span>{`$${spot.price}/night`}</span>
+            </NavLink>
         </div>
 )})}
-        </>
+        </div>
     );
 };
