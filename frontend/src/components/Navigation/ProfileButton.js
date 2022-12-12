@@ -4,6 +4,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import DemoUser from "../DemoUser";
 import './Navigation.css';
 import barsIcon from "../../assets/bars-solid.svg";
 import userIcon from "../../assets/circle-user-solid.svg";
@@ -69,6 +70,11 @@ function ProfileButton({ user }) {
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText="Demo User"
+              onItemClick={closeMenu}
+              modalComponent={<DemoUser />}
             />
           </div>
         )}
