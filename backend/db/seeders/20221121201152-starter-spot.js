@@ -81,6 +81,42 @@ module.exports = {
         name: 'Lakefront',
         description: 'Enjoy a stay near the lake.',
         price: 299
+      },
+      {
+        ownerId: 3,
+        address: '345 Stony Point Road',
+        city: 'Sonoma',
+        state: 'California',
+        country: 'United States',
+        lat: 50.1866,
+        lng: 59.49312,
+        name: 'Zen House',
+        description: 'Enjoy a very peaceful stay.',
+        price: 350
+      },
+      {
+        ownerId: 3,
+        address: '3355 Triangle Ave',
+        city: 'Felton',
+        state: 'California',
+        country: 'United States',
+        lat: 70.1866,
+        lng: 79.49312,
+        name: 'Whiskey Hollow',
+        description: 'Triangle house with good whiskey.',
+        price: 449
+      },
+      {
+        ownerId: 3,
+        address: '987 Coast Way',
+        city: 'Santa Cruz',
+        state: 'California',
+        country: 'United States',
+        lat: 10.1866,
+        lng: 19.49312,
+        name: 'Costal Cove',
+        description: 'Near beach, spas, and the harbor!',
+        price: 449
       }
     ], {})
   },

@@ -12,7 +12,7 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: 'spotplaceholder1.com',
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-21605015/original/e914d980-5585-4fbe-a0ef-21b8d0b1cf8c.jpeg?im_w=720',
         preview: true
       },
       {
@@ -39,6 +39,21 @@ module.exports = {
         spotId: 6,
         url: 'spotplaceholder6.com',
         preview: true
+      },
+      {
+        spotId: 7,
+        url: 'spotplaceholder7.com',
+        preview: true
+      },
+      {
+        spotId: 8,
+        url: 'spotplaceholder8.com',
+        preview: true
+      },
+      {
+        spotId: 9,
+        url: 'spotplaceholder9.com',
+        preview: true
       }
     ], {})
   },
@@ -47,7 +62,7 @@ module.exports = {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6] }
+      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9] }
     }, {});
   }
 };
