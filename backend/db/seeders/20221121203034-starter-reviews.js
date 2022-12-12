@@ -13,14 +13,14 @@ module.exports = {
       {
         spotId: 1,
         userId: 3,
-        review: 'Best pirate ship ever!',
+        review: 'Nice and cozy.',
         stars: 5
       },
       {
         spotId: 2,
         userId: 3,
-        review: "Worst place ever, the empolyees tried to arrest me.",
-        stars: 1
+        review: "The house was bit dirty, lake was really low.",
+        stars: 2
       },
       {
         spotId: 3,
@@ -31,14 +31,14 @@ module.exports = {
       {
         spotId: 1,
         userId: 2,
-        review: 'Good sake and food but the chef is annoying.',
+        review: 'Great place to get away.',
         stars: 4
       },
       {
         spotId: 2,
         userId: 2,
-        review: "Was ok, had to fight a giraffe person.",
-        stars: 2
+        review: "Not the best, but not the worst place.",
+        stars: 3
       },
       {
         spotId: 3,
@@ -46,6 +46,42 @@ module.exports = {
         review: 'Too big, got lost.',
         stars: 3
       },
+      {
+        spotId: 4,
+        userId: 1,
+        review: 'Love staying in high places, treehouse was great.',
+        stars: 5
+      },
+      {
+        spotId: 4,
+        userId: 3,
+        review: 'Was hard to find the spot.',
+        stars: 2
+      },
+      {
+        spotId: 5,
+        userId: 3,
+        review: 'Place too big, got lost.',
+        stars: 2
+      },
+      {
+        spotId: 5,
+        userId: 1,
+        review: 'Great lake view.',
+        stars: 5
+      },
+      {
+        spotId: 6,
+        userId: 1,
+        review: 'Plenty of space, nice and clean.',
+        stars: 4
+      },
+      {
+        spotId: 6,
+        userId: 3,
+        review: 'Great food and drink options.s',
+        stars: 5
+      }
     ], {})
   },
 

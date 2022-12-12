@@ -12,39 +12,75 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: '429 Shanks Ave',
-        city: 'Foosha Village',
-        state: 'Goa Kingdom',
-        country: 'East Blue',
+        address: '345 Cabin Lane',
+        city: 'Occidental',
+        state: 'California',
+        country: 'United States',
         lat: 45.123124,
         lng: 95.2532352,
-        name: 'Thousand Sunny',
-        description: 'Ship of the future pirate king!',
-        price: 134.11
+        name: 'Occidental Cabin',
+        description: 'Rustic yet luxurious cabin in the Redwoods.',
+        price: 500
       },
       {
         ownerId: 1,
-        address: '10671 One Way Lane',
-        city: 'World Government',
-        state: 'Paradise',
-        country: 'Grand Line',
+        address: '123 Grove Ave',
+        city: 'Groveland',
+        state: 'California',
+        country: 'United States',
         lat: 55.234234,
         lng: 85.23424,
-        name: 'Enies Lobby',
-        description: 'Check out the big door that leads to Impel Down!',
-        price: 234.22
+        name: 'Lakeside House',
+        description: 'Family lakehouse with private dock!',
+        price: 695
       },
       {
         ownerId: 1,
-        address: '333 Desert Lane',
-        city: 'Arabasta',
-        state: 'Paradise',
-        country: 'Grand Line',
+        address: '789 Clear Way',
+        city: 'Clearlake Oaks',
+        state: 'California',
+        country: 'United States',
         lat: -50.1866,
         lng: 89.49312,
-        name: "Vivi's Palce",
-        description: 'Enjoy a luxurious stay in the country palace!',
-        price: 764.33
+        name: 'Lakeside Loveshack',
+        description: 'Modern and cozy with firepit.',
+        price: 299
+      },
+      {
+        ownerId: 2,
+        address: '987 Tree Lane',
+        city: 'San Jose',
+        state: 'California',
+        country: 'United States',
+        lat: -66.1866,
+        lng: 77.49312,
+        name: 'Treehouse',
+        description: 'Spend a relaxing time in a tree!',
+        price: 500
+      },
+      {
+        ownerId: 2,
+        address: '2983 Woods Ave',
+        city: 'Stateline',
+        state: 'Nevada',
+        country: 'United States',
+        lat: -65.1866,
+        lng: -65.49312,
+        name: 'Tahoe Beach Club',
+        description: 'Entire condo by the lakefront!',
+        price: 299
+      },
+      {
+        ownerId: 2,
+        address: '1245 Lakeside Lane',
+        city: 'South Lake Tahoe',
+        state: 'California',
+        country: 'United States',
+        lat: 70.1866,
+        lng: 79.49312,
+        name: 'Lakefront',
+        description: 'Enjoy a stay near the lake.',
+        price: 299
       }
     ], {})
   },
@@ -53,7 +89,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     await queryInterface.bulkDelete(options, {
-      country: { [Op.in]: ['Grand Line', 'East Blue'] }
+      country: { [Op.in]: ['United States'] }
     }, {});
   }
 };
