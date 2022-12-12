@@ -16,11 +16,11 @@ export default function HomePage() {
         {spots.map(spot => {
             return (
         <div>
-            <NavLink to={`/api/spots/${spot.id}`}>
-            <span>{spot.city}{spot.state}</span>
-            <img src={spot.previewImage} alt="spot1-image" />
-            <span>{spot.avgRating}</span>
-            <span>{`$${spot.price}/night`}</span>
+            <NavLink className="spot-cards" to={`/api/spots/${spot.id}`}>
+            <img className="item1" src={spot.previewImage} alt={spot.previewImage} />
+            <span className="item2">{spot.city}{spot.state}</span>
+            <span className="item3">{spot.avgRating}</span>
+            <span className="item4">{`$${spot.price}/night`}</span>
             </NavLink>
         </div>
 )})}

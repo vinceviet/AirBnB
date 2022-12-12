@@ -1,5 +1,39 @@
-.spots-list{
+.spots-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px 40px 10px 40px;
+    gap: 1em;
 }
 
+.spot-cards {
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 4fr, 1fr, 1fr;
+    gap: 5px;
+    grid-template-areas:
+    "a a"
+    "b c"
+    "d d";
+    align-items: start;
+}
+
+.spot-cards:link{
+   text-decoration: none;
+}
+
+.item1{
+    grid-area: a;
+}
+
+.item2{
+    grid-area: b;
+}
+
+
+.item3{
+    grid-area: c;
+}
+
+.item4{
+    grid-area: d;
+}
