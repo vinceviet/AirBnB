@@ -18,8 +18,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path='/'>
+          <Route exact path={["/", "/api/spots", "api/spots/:spotId"]}>
           <HomePage />
+          </Route>
+          <Route>
+            Page Not Found
           </Route>
         </Switch>
       )}

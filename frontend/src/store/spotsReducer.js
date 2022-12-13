@@ -1,9 +1,14 @@
 
 const LOAD_SPOTS = 'spots/loadSpots';
+const SPOT_DETAILS = 'spots/spotDetails';
 
 const load = spots => ({
     type: LOAD_SPOTS, spots
 });
+
+const details = spot => ({
+    type: SPOT_DETAILS, spot
+})
 
 export const getAllSpots = () => async dispatch => {
     const res = await fetch('/api/spots');
@@ -13,14 +18,26 @@ export const getAllSpots = () => async dispatch => {
     };
 };
 
+export const getSpotDetails = (spotId) => async dispatch => {
+    const res = await fetch(`/api/spots/${spotId}`);
+    if (res.ok) {
+        const spotDetails = await res.json();
+        console.log('fetch', spotDetails);
+        dispatch(details(spotDetails));
+    };
+};
+
 const spotsReducer = (state = {}, action) => {
     let newState = { ...state }
     switch (action.type) {
         case LOAD_SPOTS:
-            newState = action.spots
-            return newState
+            newState = action.spots;
+            return newState;
+        case SPOT_DETAILS:
+            newState = action.spot;
+            return newState;
         default:
-            return state
+            return state;
     };
 };
 

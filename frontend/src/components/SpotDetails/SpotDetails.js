@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 const SpotDetails = () => {
     const { spotId } = useParams;
-    const spot = useSelector(state => state.spots[spotId]);
+    const spot = Object.values(useSelector(state => state.spots[spotId]));
     console.log('spotdetail', spot);
 
     return (
