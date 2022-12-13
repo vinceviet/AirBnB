@@ -7,7 +7,6 @@ import './HomePage.css';
 export default function HomePage() {
     const dispatch = useDispatch();
     const spots = Object.values(useSelector(state => state.spots));
-
     useEffect(() => {
         dispatch(getAllSpots(spots));
     }, []);

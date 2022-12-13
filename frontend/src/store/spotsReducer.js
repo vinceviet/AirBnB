@@ -31,11 +31,13 @@ const spotsReducer = (state = {}, action) => {
     let newState = { ...state }
     switch (action.type) {
         case LOAD_SPOTS:
-            // newState = action.spots;
-            return {...state, ...action.spots}
+            const spotList = [...action.spots];
+            spotList.forEach(spot =>{
+                newState[spot.id] = spot
+            })
+            return newState
         case SPOT_DETAILS:
-            console.log('action spot Id', action.spot.id)
-            newState = action.spot;
+            newState[action.spot.id] = action.spot
             return newState;
         default:
             return state;
