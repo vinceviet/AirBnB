@@ -5,6 +5,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import DemoUser from "../DemoUser";
+import CreatSpotModal from "../CreateSpotModal";
 import './Navigation.css';
 import barsIcon from "../../assets/bars-solid.svg";
 import userIcon from "../../assets/circle-user-solid.svg";
@@ -55,6 +56,11 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.firstName} {user.lastName}</li>
             <li>{user.email}</li>
+            <OpenModalMenuItem
+              itemText="Host your home"
+              onItemClick={closeMenu}
+              modalComponent={<CreatSpotModal />}
+            />
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
@@ -76,9 +82,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<DemoUser />}
             />
-            <li className="dropdown-divider"></li>
-            <li>Host your home</li>
-            <li>Account</li>
+            {/* <li className="dropdown-divider"></li> */}
           </div>
         )}
       </ul>

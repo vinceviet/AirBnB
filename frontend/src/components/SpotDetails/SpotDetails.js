@@ -7,18 +7,18 @@ const SpotDetails = () => {
     const dispatch = useDispatch();
     const { spotId } = useParams();
     const spot = useSelector(state => state.spots[spotId]);
-    console.log('spot', spot)
-    const spotImages = spot.SpotImages[0]
-    console.log('spotImages', spotImages)
+    // const spotImages = spot.SpotImages;
     useEffect(() => {
         console.log("details useeffect")
         dispatch(getSpotDetails(spotId))
     }, []);
 
+    if(!spot) return null;
+
     return (
         <div className="spot-details">
             <h2>{spot.name}</h2>
-            <img className="main-img" src={spotImages.url} alt={spotImages.url} />
+            <img className="main-img" src={spot.url} alt={spot.url} />
             <span>{`Address: ${spot.address}, ${spot.city}, ${spot.state}, ${spot.country}`}</span>
             <span>{`Desription: ${spot.description}`}</span>
             <span>{`Price: ${spot.price}`}</span>

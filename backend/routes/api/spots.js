@@ -41,8 +41,7 @@ const checkIfAddressExists = (req, res, next) => {
                 statusCode: 403,
                 errors: {
                     address: "Spot with that address already exists"
-                }
-            });
+                }});
             return;
         };
         next()
@@ -173,7 +172,7 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
 }));
 
 // Create a Spot
-router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, asyncHandler (async (req, res) => {
+router.post('/', requireAuth, validateSpotPost, /*checkIfAddressExists,*/ asyncHandler (async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({
         address, city, state, country, lat, lng, name, description, price, ownerId: req.user.id

@@ -1,10 +1,11 @@
-import React, { useState , useEffect} from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import * as sessionActions from "../../store/session";
+import { createSpot } from "../../store/spotsReducer";
+// import * as sessionActions from "../../store/session";
 import './CreateSpot.css';
 
-function CreatSpotModal() {
+export default function CreatSpotModal() {
     const dispatch = useDispatch();
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -13,14 +14,25 @@ function CreatSpotModal() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [lat, setLat] = useState("");
-    const [lng, setLng] = useState("");
-    // const [errors, setErrors] = useState([]);
+    const [lat, setLat] = useState(33.3333);
+    const [lng, setLng] = useState(22.2222);
+    const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const newSpot = {
+            address, city, state, country, name, description, price, lat, lng,
+        }
+
+        await dispatch(createSpot(newSpot))
+            .then(closeModal)
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
     };
 
     return (
@@ -93,10 +105,8 @@ function CreatSpotModal() {
                         required
                     />
                 </label>
-                <button id="signup-button" type="submit">Sign Up</button>
+                <button type="submit">Create listing</button>
             </form>
         </div>
     );
-}
-
-export default CreateSpotModal;
+};
