@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createSpot } from "../../store/spotsReducer";
-import './CreateSpot.css';
+import './EditSpot.css';
 
-export default function CreatSpotModal() {
+export default function EditSpotModal() {
     const dispatch = useDispatch();
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
