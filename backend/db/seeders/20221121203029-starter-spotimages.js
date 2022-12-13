@@ -22,12 +22,12 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: 'spotplaceholder3.comhttps://a0.muscache.com/im/pictures/2d55ea64-3219-4839-a30c-96b0805c881f.jpg?im_w=720',
+        url: 'https://a0.muscache.com/im/pictures/2d55ea64-3219-4839-a30c-96b0805c881f.jpg?im_w=720',
         preview: true
       },
       {
         spotId: 4,
-        url: 'spotplaceholder4.comhttps://a0.muscache.com/im/pictures/3b78d9b5-712b-4482-b0d3-aedf94ef5acb.jpg?im_w=720',
+        url: 'https://a0.muscache.com/im/pictures/3b78d9b5-712b-4482-b0d3-aedf94ef5acb.jpg?im_w=720',
         preview: true
       },
       {
@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         spotId: 6,
-        url: 'spotplaceholder6.comhttps://a0.muscache.com/im/pictures/8b49998c-569b-498d-8946-820a1a9f8633.jpg?im_w=720',
+        url: 'https://a0.muscache.com/im/pictures/8b49998c-569b-498d-8946-820a1a9f8633.jpg?im_w=720',
         preview: true
       },
       {
