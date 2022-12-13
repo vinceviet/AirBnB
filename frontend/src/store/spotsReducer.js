@@ -31,10 +31,10 @@ const spotsReducer = (state = {}, action) => {
     let newState = { ...state }
     switch (action.type) {
         case LOAD_SPOTS:
-            newState = action.spots;
-            return newState;
+            // newState = action.spots;
+            return {...state, ...action.spots}
         case SPOT_DETAILS:
-            console.log("details")
+            console.log('action spot Id', action.spot.id)
             newState = action.spot;
             return newState;
         default:

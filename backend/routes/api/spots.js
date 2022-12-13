@@ -193,7 +193,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 });
 
 // Edit a Spot
-router.put('/:spotId', requireAuth, validateSpotPost, async (req, res) => {
+router.put('/:spotId', requireAuth, validateSpotPost, asyncHandler (async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     if (spot.toJSON().ownerId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
@@ -201,16 +201,16 @@ router.put('/:spotId', requireAuth, validateSpotPost, async (req, res) => {
     const updatedSpot = await spot.update({ address, city, state, country, lat, lng, name, description, price, owerId: req.user.id });
     res.json(updatedSpot);
 
-});
+}));
 
 // Delete a Spot
-router.delete('/:spotId', requireAuth, async (req, res) => {
+router.delete('/:spotId', requireAuth, asyncHandler (async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     if (spot.toJSON().ownerId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
     await spot.destroy();
     res.json({ message: "Successfully deleted", statusCode: 200 });
-});
+}));
 
 // Get all Reviews by a Spot's id
 router.get('/:spotId/reviews', async (req, res) => {

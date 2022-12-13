@@ -6,12 +6,14 @@ import { getSpotDetails } from '../../store/spotsReducer';
 const SpotDetails = () => {
     const dispatch = useDispatch();
     const { spotId } = useParams();
+    console.log('spotId', spotId)
     const spot = useSelector(state => state.spots[spotId - 1]);
+    console.log('spot', spot)
 
     useEffect(() => {
         console.log("details useeffect")
-        dispatch(getSpotDetails(spot))
-    }, [spot]);
+        dispatch(getSpotDetails(spot.id))
+    }, []);
 
     return (
         <div className="spot-details">

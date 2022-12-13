@@ -76,6 +76,9 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<DemoUser />}
             />
+            <li className="dropdown-divider"></li>
+            <li>Host your home</li>
+            <li>Account</li>
           </div>
         )}
       </ul>

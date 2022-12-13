@@ -8,6 +8,12 @@
     box-shadow: 0 2px 16px rgb(0 0 0 / 14%);
 }
 
+.dropdown-divider{
+    background-color: #ddd;
+    height: 1px;
+    width: 100%;
+}
+
 .hidden {
     display: none;
 }
