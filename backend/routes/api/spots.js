@@ -173,13 +173,13 @@ router.get('/:spotId', asyncHandler(async (req, res) => {
 }));
 
 // Create a Spot
-router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, async (req, res) => {
+router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, asyncHandler (async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const newSpot = await Spot.create({
         address, city, state, country, lat, lng, name, description, price, ownerId: req.user.id
     });
     res.json(newSpot);
-});
+}));
 
 // Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res) => {

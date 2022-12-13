@@ -2,10 +2,10 @@
     position: absolute;
     right: 80px;
     background-color: white;
-    border: solid #DDDDDD 1px;
     border-radius: 12px;
     list-style: none;
     padding: 15px 50px 15px 10px;
+    box-shadow: 0 2px 16px rgb(0 0 0 / 14%);
 }
 
 .hidden {
@@ -18,7 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid rgb(196, 185, 185) 1px;
+    border-bottom: solid #ddd 1px;
     padding: 10px 40px 15px 40px;
 }
 
@@ -27,18 +27,18 @@
 }
 
 #menu-items {
-    display: flex;
-    justify-content: space-evenly;
+    display: inline-flex;
     align-items: center;
     width: 77px;
     height: 42px;
-    border-radius: 16px;
+    border-radius: 21px;
     background-color: white;
-    border-color: #DDDDDD;
+    border: solid 1px #ddd;
+    padding: 5px 5px 5px 11px;
 }
 
 #menu-items:hover {
-    box-shadow: 0 2px 5px #DDDDDD;
+    box-shadow: 0 2px 5px #ddd;
 }
 
 .login-signup>li {

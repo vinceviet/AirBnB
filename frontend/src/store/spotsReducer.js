@@ -34,6 +34,7 @@ const spotsReducer = (state = {}, action) => {
             newState = action.spots;
             return newState;
         case SPOT_DETAILS:
+            console.log("details")
             newState = action.spot;
             return newState;
         default:

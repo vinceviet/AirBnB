@@ -9,8 +9,9 @@ const SpotDetails = () => {
     const spot = useSelector(state => state.spots[spotId - 1]);
 
     useEffect(() => {
-    dispatch(getSpotDetails(spot))
-    },[]);
+        console.log("details useeffect")
+        dispatch(getSpotDetails(spot))
+    }, [spot]);
 
     return (
         <div className="spot-details">
