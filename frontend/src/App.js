@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
+import SpotDetails from "./components/SpotDetails/SpotDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,8 +19,11 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path={["/", "/api/spots", "api/spots/:spotId"]}>
-          <HomePage />
+          <Route exact path={["/", "/api/spots"]}>
+            <HomePage />
+          </Route>
+          <Route path="/api/spots/:spotId">
+            <SpotDetails />
           </Route>
           <Route>
             Page Not Found

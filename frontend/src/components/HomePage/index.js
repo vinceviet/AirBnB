@@ -1,26 +1,18 @@
-import { NavLink, Route, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/spotsReducer';
-import { getSpotDetails } from '../../store/spotsReducer';
-import './HomePage.css'
-import SpotDetails from '../SpotDetails/SpotDetails';
+import './HomePage.css';
 
 export default function HomePage() {
-    const { spotId } = useParams();
     const dispatch = useDispatch();
     const spots = Object.values(useSelector(state => state.spots));
 
     useEffect(() => {
-        dispatch(getAllSpots(spots))
+        dispatch(getAllSpots(spots));
     }, []);
 
-    useEffect(() => {
-        dispatch(getSpotDetails(spotId))
-    }, [spotId]);
-
     return (
-        <>
             <div className="spots-list">
                 {spots.map(spot => {
                     return (
@@ -35,9 +27,5 @@ export default function HomePage() {
                     )
                 })}
             </div>
-            <Route path="/api/spots/:spotId">
-                <SpotDetails />
-            </Route>
-        </>
     );
 };

@@ -152,7 +152,7 @@ router.get('/current', requireAuth, async (req, res) => {
 });
 
 // Get details of a Spot from an id
-router.get('/:spotId', async (req, res) => {
+router.get('/:spotId', asyncHandler(async (req, res) => {
     let spot = await Spot.findByPk(req.params.spotId, {
         include: [{ model: SpotImage },
         { model: User, as: 'Owner', attributes: ['id', 'firstName', 'lastName'] },
@@ -170,7 +170,7 @@ router.get('/:spotId', async (req, res) => {
     spot = spot.toJSON();
     Object.assign(spot, reviewStats);
     res.json(spot);
-});
+}));
 
 // Create a Spot
 router.post('/', requireAuth, validateSpotPost, checkIfAddressExists, async (req, res) => {
