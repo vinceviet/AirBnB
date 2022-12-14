@@ -15,7 +15,7 @@ const SpotDetails = () => {
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-    console.log('topspot', spot);
+
     const openMenu = () => {
         if (showMenu) return;
         setShowMenu(true);
@@ -47,9 +47,8 @@ const SpotDetails = () => {
     };
 
     if (!spot) return null;
-    console.log('user', sessionUser);
-    console.log('spot', spot)
-    // if (sessionUser.id === spot.ownerId.id) {
+
+    if (sessionUser.id === spot.ownerId) {
         return (
             <>
                 <div className="spot-details">
@@ -69,16 +68,16 @@ const SpotDetails = () => {
                 </div>
             </>
         );
-    // }
-    // else return (
-    //     <div className="spot-details">
-    //         <h2>{spot.name}</h2>
-    //         <img className="main-img" src={spot.url} alt={spot.url} />
-    //         <span>{`Address: ${spot.address}, ${spot.city}, ${spot.state}, ${spot.country}`}</span>
-    //         <span>{`Desription: ${spot.description}`}</span>
-    //         <span>{`Price: ${spot.price}`}</span>
-    //     </div>
-    // );
+    }
+    else return (
+        <div className="spot-details">
+            <h2>{spot.name}</h2>
+            <img className="main-img" src={spot.url} alt={spot.url} />
+            <span>{`Address: ${spot.address}, ${spot.city}, ${spot.state}, ${spot.country}`}</span>
+            <span>{`Desription: ${spot.description}`}</span>
+            <span>{`Price: ${spot.price}`}</span>
+        </div>
+    );
 };
 
 export default SpotDetails;

@@ -6,7 +6,7 @@ import { useModal } from '../../context/Modal';
 import './EditSpot.css';
 
 export default function EditSpotModal() {
-    const {spotId} = useParams();
+    const { spotId } = useParams();
     console.log('spotId', spotId)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
