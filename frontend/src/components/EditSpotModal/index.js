@@ -8,6 +8,5 @@ export default function EditSpotModal() {
 
     return(
         <></>
-        // <SpotFormModal spot={spot} formType="Edit Spot" />
     );
 };
