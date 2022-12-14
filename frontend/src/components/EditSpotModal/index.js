@@ -1,18 +1,14 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { editSpot } from '../../store/spotsReducer';
 import { useModal } from '../../context/Modal';
 import './EditSpot.css';
 
-export default function EditSpotModal() {
-    const { spotId } = useParams();
-    console.log('spotId', spotId)
+export default function EditSpotModal({spotId}) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const spot = useSelector(state => state.spots)
-    console.log('spot info', spot);
-    const [id, setId] = useState(spot.id)
+
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);
     const [state, setState] = useState(spot.state);
@@ -28,7 +24,7 @@ export default function EditSpotModal() {
         e.preventDefault();
 
         const editedSpot = {
-            address, city, state, country, name, description, price, lat, lng,
+            id: spotId, address, city, state, country, name, description, price, lat, lng,
         }
         console.log('edit', editedSpot)
         await dispatch(editSpot(editedSpot))
@@ -38,7 +34,6 @@ export default function EditSpotModal() {
                 if (data && data.errors) setErrors(data.errors);
             });
     };
-
 
     return (
         <div className="edit-spot-inputs">

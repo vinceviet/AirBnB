@@ -11,6 +11,7 @@ const SpotDetails = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { spotId } = useParams();
+    console.log('spotdetails id', spotId);
     const spot = useSelector(state => state.spots[spotId]);
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
@@ -63,7 +64,7 @@ const SpotDetails = () => {
                     <OpenModalMenuItem
                         itemText="Modify Home"
                         onItemClick={closeMenu}
-                        modalComponent={<EditSpotModal />}
+                        modalComponent={<EditSpotModal spotId={spotId} />}
                     />
                 </div>
             </>
