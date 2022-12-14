@@ -19,10 +19,10 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path={["/", "/api/spots"]}>
+          <Route exact path={["/", "/spots"]}>
             <HomePage />
           </Route>
-          <Route path="/api/spots/:spotId">
+          <Route path="/spots/:spotId">
             <SpotDetails />
           </Route>
           <Route>

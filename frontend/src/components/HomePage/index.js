@@ -16,7 +16,7 @@ export default function HomePage() {
                 {spots.map(spot => {
                     return (
                         <div>
-                            <NavLink key={spot.name} className="spot-cards" to={`/api/spots/${spot.id}`} /*target="_blank" rel="noopener noreferrer"*/>
+                            <NavLink key={spot.name} className="spot-cards" to={`/spots/${spot.id}`}>
                                 <img className="item1" src={spot.previewImage} alt={spot.previewImage} />
                                 <span className="item2">{`${spot.city}, ${spot.state}`}</span>
                                 <span className="item3"><i class="fas fa-sharp fa-solid fa-star fa-xs" /> {spot.avgRating}</span>

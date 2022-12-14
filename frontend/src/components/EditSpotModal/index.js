@@ -1,12 +1,111 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editSpot } from '../../store/spotsReducer';
+import { useModal } from '../../context/Modal';
 import './EditSpot.css';
 
 export default function EditSpotModal() {
     const {spotId} = useParams();
-    const spot = useSelector(state=> state.spots[spotId]);
+    console.log('spotId', spotId)
+    const dispatch = useDispatch();
+    const { closeModal } = useModal();
+    const spot = useSelector(state => state.spots)
+    console.log('spot info', spot);
+    const [id, setId] = useState(spot.id)
+    const [address, setAddress] = useState(spot.address);
+    const [city, setCity] = useState(spot.city);
+    const [state, setState] = useState(spot.state);
+    const [country, setCountry] = useState(spot.country);
+    const [name, setName] = useState(spot.name);
+    const [description, setDescription] = useState(spot.description);
+    const [price, setPrice] = useState(spot.prcie);
+    const [lat, setLat] = useState(33.3333);
+    const [lng, setLng] = useState(22.2222);
+    const [errors, setErrors] = useState([]);
 
-    return(
-        <></>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const editedSpot = {
+            address, city, state, country, name, description, price, lat, lng,
+        }
+        console.log('edit', editedSpot)
+        await dispatch(editSpot(editedSpot))
+            .then(closeModal)
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
+    };
+
+
+    return (
+        <div className="edit-spot-inputs">
+            <h1>Home Information</h1>
+            <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+                <label>
+                    <input
+                        type="text"
+                        placeholder="Address"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                </label><br />
+                <label>
+                    <input
+                        type="text"
+                        placeholder="City"
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                    />
+                </label><br />
+                <label>
+                    <input
+                        type="text"
+                        placeholder="State"
+                        value={state}
+                        onChange={(e) => setState(e.target.value)}
+                    />
+                </label><br />
+                <label>
+                    <input
+                        type="text"
+                        placeholder="Country"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                    />
+                </label><br />
+                <label>
+                    <input
+                        type="text"
+                        placeholder="Home Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </label><br />
+                <label>
+                    <input
+                        type="text"
+                        placeholder="Describe your home"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                </label><br />
+                <label>
+                    <input
+                        type="text"
+                        placeholder="Set price per night"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
+                    />
+                </label>
+                <button type="submit">Modify Listing</button>
+            </form>
+        </div>
     );
+
 };

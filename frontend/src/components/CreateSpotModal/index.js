@@ -15,6 +15,7 @@ export default function CreatSpotModal() {
     const [price, setPrice] = useState("");
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
+    // const [previewImage, setPreviewImage] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:https://icons8.com/icon/tNcJ7GGjHsUq/house&usqp=CAU");
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
@@ -22,7 +23,7 @@ export default function CreatSpotModal() {
         e.preventDefault();
 
         const newSpot = {
-            address, city, state, country, name, description, price, lat, lng,
+            address, city, state, country, name, description, price, lat, lng
         }
 
         await dispatch(createSpot(newSpot))
@@ -31,6 +32,7 @@ export default function CreatSpotModal() {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
+            console.log('newSpot', newSpot)
     };
 
     return (
