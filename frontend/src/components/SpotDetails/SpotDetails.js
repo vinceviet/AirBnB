@@ -2,16 +2,15 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpotDetails } from '../../store/spotsReducer';
-import { thunkDeleteSpot } from '../../store/spotsReducer';
 import EditSpotModal from '../EditSpotModal';
 import { useRef } from 'react';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import DeleteSpotModal from '../DeleteSpotModal';
 
 const SpotDetails = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { spotId } = useParams();
-    console.log('spotdetails id', spotId);
     const spot = useSelector(state => state.spots[spotId]);
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
@@ -42,11 +41,6 @@ const SpotDetails = () => {
         dispatch(getSpotDetails(spotId))
     }, []);
 
-    const deleteSpotHandler = (spotId) => {
-        dispatch(thunkDeleteSpot(spotId));
-        history.push('/');
-    };
-
     if (!spot) return null;
 
     if (sessionUser.id === spot.ownerId) {
@@ -60,7 +54,11 @@ const SpotDetails = () => {
                     <span>{`Price: ${spot.price}`}</span>
                 </div>
                 <div className="delete-edit">
-                    <button onClick={() => deleteSpotHandler(spot.id)}>Delete Spot</button>
+                    <OpenModalMenuItem
+                        itemText="Delete Listing"
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteSpotModal spot={spot} />}
+                    />
                     <OpenModalMenuItem
                         itemText="Modify Home"
                         onItemClick={closeMenu}

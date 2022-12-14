@@ -5,13 +5,22 @@ import { thunkDeleteSpot } from '../../store/spotsReducer';
 import { useModal } from '../../context/Modal';
 import './DeleteSpot.css';
 
-export default function DeleteSpotModal() {
-return (
-    <div>
+export default function DeleteSpotModal({spot}) {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const { closeModal } = useModal();
 
-    <h1>Are you sure you want to delete:</h1>
+    const deleteSpotHandler = async (spotId) => {
+        await dispatch(thunkDeleteSpot(spotId)).then(closeModal);
+        history.push('/');
+    };
+    return (
+        <div>
 
-    <button onClick={() => deleteSpotHandler(spot.id)}>Delete Spot</button>
-    </div>
-)
+            <h1>Are you sure you want to delete: {spot.name}</h1>
+
+            <button onClick={closeModal}>Cancel</button>
+            <button onClick={() => deleteSpotHandler(spot.id)}>Delete Spot</button>
+        </div>
+    )
 };
