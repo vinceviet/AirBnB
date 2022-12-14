@@ -40,6 +40,7 @@ function LoginFormModal() {
           </ul>
           <label>
             <input
+            className="login-fields"
               type="text"
               placeholder="Username or Email"
               value={credential}
@@ -49,6 +50,7 @@ function LoginFormModal() {
           </label>
           <label>
             <input
+            className="login-fields"
               id="password"
               type="password"
               placeholder="Password"
