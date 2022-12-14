@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const LOAD_SPOTS = 'spots/loadSpots';
 const SPOT_DETAILS = 'spots/spotDetails';
 const CREATE_SPOT = 'spots/createSpot';
+const EDIT_SPOT = 'spots/editSpot';
 const DELETE_SPOT = 'spots/deleteSpot';
 
 const load = spots => ({
@@ -17,7 +18,11 @@ const create = newSpot => ({
     type: CREATE_SPOT, newSpot
 });
 
-const deleteSpot = spot =>({
+const edit = spot => ({
+    type: EDIT_SPOT, spot
+});
+
+const deleteSpot = spot => ({
     type: DELETE_SPOT, spot
 });
 
@@ -51,12 +56,25 @@ export const createSpot = (newSpot) => async dispatch => {
     };
 };
 
+export const editSpot = (spot) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(spot)
+    });
+    if (res.ok) {
+        const updatedSpot = await res.json();
+        dispatch(edit(updatedSpot));
+        return updatedSpot;
+    };
+};
+
 export const thunkDeleteSpot = (spotId) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     });
-    if(res.ok){
+    if (res.ok) {
         const spot = await res.json();
         dispatch(deleteSpot(spot));
     };
@@ -80,9 +98,12 @@ const spotsReducer = (state = initialState, action) => {
         case CREATE_SPOT:
             newState[action.newSpot.id] = action.newSpot;
             return newState;
-            case DELETE_SPOT:
-                delete newState[action.spot.id];
-                return newState;
+        case EDIT_SPOT:
+            newState[action.spot.id] = action.spot;
+            return newState;
+        case DELETE_SPOT:
+            delete newState[action.spot.id];
+            return newState;
         default:
             return state;
     };
