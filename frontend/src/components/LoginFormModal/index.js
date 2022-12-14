@@ -25,8 +25,13 @@ function LoginFormModal() {
   };
 
   return (
-      <div id="login-inputs">
-        <h1>Log In</h1>
+      <div id="login-container">
+        <header className="login-header">
+          <button id="cancel-x" onClick={closeModal}>X</button>
+          Log In
+        </header>
+         <li className="header-divider"></li>
+        <h2>Welcome to Onebnb</h2>
         <form onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
@@ -41,17 +46,18 @@ function LoginFormModal() {
               onChange={(e) => setCredential(e.target.value)}
               required
             />
-          </label><br />
+          </label>
           <label>
             <input
+              id="password"
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </label><br />
-          <button id="login-button" type="submit">Log In</button>
+          </label>
+          <button id="login-button" type="submit">Continue</button>
         </form>
       </div>
   );

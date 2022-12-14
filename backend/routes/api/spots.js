@@ -192,7 +192,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 });
 
 // Edit a Spot
-router.put('/:spotId', requireAuth, validateSpotPost, asyncHandler (async (req, res) => {
+router.put('/:spotId', requireAuth, asyncHandler (async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId);
     if (!spot) return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 });
     if (spot.toJSON().ownerId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
