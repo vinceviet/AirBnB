@@ -13,9 +13,9 @@ export default function CreatSpotModal() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const [previewImage, setPreviewImage] = useState("");
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
-    // const [previewImage, setPreviewImage] = useState("https://encrypted-tbn0.gstatic.com/images?q=tbn:https://icons8.com/icon/tNcJ7GGjHsUq/house&usqp=CAU");
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
@@ -23,7 +23,7 @@ export default function CreatSpotModal() {
         e.preventDefault();
 
         const newSpot = {
-            address, city, state, country, name, description, price, lat, lng
+            address, city, state, country, name, description, price, lat, lng, previewImage
         }
 
         await dispatch(createSpot(newSpot))
@@ -32,7 +32,6 @@ export default function CreatSpotModal() {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
-        console.log('newSpot', newSpot)
     };
 
     return (
@@ -109,11 +108,21 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields-bottom"
+                        className="create-fields"
                         type="text"
                         placeholder="Set price per night"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    <input
+                        className="create-fields-bottom"
+                        type="url"
+                        placeholder="Preview Image URL"
+                        value={previewImage}
+                        onChange={(e) => setPreviewImage(e.target.value)}
                         required
                     />
                 </label>

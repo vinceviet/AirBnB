@@ -15,7 +15,6 @@ const SpotDetails = () => {
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
-    console.log(spot);
 
     let url;
     if (!spot.SpotImages) url = null
