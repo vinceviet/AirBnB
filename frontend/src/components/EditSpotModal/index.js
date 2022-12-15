@@ -16,7 +16,6 @@ export default function EditSpotModal({ spotId }) {
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.prcie);
-    const [previewImage, setPreviewImage] = useState(spot.previewImage);
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
     const [errors, setErrors] = useState([]);
@@ -25,7 +24,7 @@ export default function EditSpotModal({ spotId }) {
         e.preventDefault();
 
         const editedSpot = {
-            id: spotId, address, city, state, country, name, description, price, lat, lng, previewImage
+            id: spotId, address, city, state, country, name, description, price, lat, lng,
         }
         await dispatch(editSpot(editedSpot))
             .then(closeModal)
@@ -103,20 +102,11 @@ export default function EditSpotModal({ spotId }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields"
+                        className="edit-fields-bottom"
                         type="text"
                         placeholder="Set price per night"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
-                    />
-                </label>
-                <label>
-                    <input
-                        className="edit-fields-bottom"
-                        type="text"
-                        placeholder="Preview Image URL"
-                        value={previewImage}
-                        onChange={(e) => setPreviewImage(e.target.value)}
                     />
                 </label>
                 <button id="edit-button" type="submit">Modify Listing</button>
