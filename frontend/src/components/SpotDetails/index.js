@@ -60,7 +60,7 @@ const SpotDetails = () => {
                 <div className="spot-details">
                     <h2 id="name">{spot.name}</h2>
                     <p className="spot-info">
-                        <span><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {spot.avgStarRating} &middot;</span>
+                        <span><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgStarRating).toFixed(1)} &middot;</span>
                         <span>{spot.numReviews} Reviews &middot;</span>
                         <span>{`${spot.city}, ${spot.state}, ${spot.country}`}</span>
                     </p>
