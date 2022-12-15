@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+.delete-container {
+    text-align: left;
+    padding: 24px;
+    width: 568px;
+    height: 200px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#delete-cancel-button {
+    display: block;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 25px;
+    border-radius: 6px;
+    background-image: radial-gradient(circle at center center,
+            rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%,
+            rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
+            rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+}

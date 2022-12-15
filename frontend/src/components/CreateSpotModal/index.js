@@ -32,11 +32,15 @@ export default function CreatSpotModal() {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
-            console.log('newSpot', newSpot)
+        console.log('newSpot', newSpot)
     };
 
     return (
-        <div className="create-spot-inputs">
+        <div className="create-container">
+            <header className="signup-header">
+                <button id="cancel-x" onClick={closeModal}>X</button>
+                Create a listing
+            </header>
             <h1>Home Information</h1>
             <form onSubmit={handleSubmit}>
                 <ul>
@@ -44,60 +48,67 @@ export default function CreatSpotModal() {
                 </ul>
                 <label>
                     <input
+                        className="create-fields-top"
                         type="text"
                         placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
+                        className="create-fields"
                         type="text"
                         placeholder="City"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
+                        className="create-fields"
                         type="text"
                         placeholder="State"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
+                        className="create-fields"
                         type="text"
                         placeholder="Country"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
+                        className="create-fields"
                         type="text"
                         placeholder="Home Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
+                        className="create-fields"
                         type="text"
                         placeholder="Describe your home"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
+                        className="create-fields-bottom"
                         type="text"
                         placeholder="Set price per night"
                         value={price}
@@ -105,7 +116,7 @@ export default function CreatSpotModal() {
                         required
                     />
                 </label>
-                <button type="submit">Create listing</button>
+                <button id="create-button" type="submit">Create listing</button>
             </form>
         </div>
     );

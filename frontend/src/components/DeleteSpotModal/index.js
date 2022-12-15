@@ -5,7 +5,7 @@ import { thunkDeleteSpot } from '../../store/spotsReducer';
 import { useModal } from '../../context/Modal';
 import './DeleteSpot.css';
 
-export default function DeleteSpotModal({spot}) {
+export default function DeleteSpotModal({ spot }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const { closeModal } = useModal();
@@ -15,12 +15,12 @@ export default function DeleteSpotModal({spot}) {
         history.push('/');
     };
     return (
-        <div>
-
+        <div className="delete-container">
             <h1>Are you sure you want to delete: {spot.name}</h1>
-
-            <button onClick={closeModal}>Cancel</button>
-            <button onClick={() => deleteSpotHandler(spot.id)}>Delete Spot</button>
+            <div className="button-container">
+                <button id="delete-cancel-button" onClick={closeModal}>Cancel</button>
+                <button id="delete-cancel-button" onClick={() => deleteSpotHandler(spot.id)}>Delete Spot</button>
+            </div>
         </div>
     )
 };

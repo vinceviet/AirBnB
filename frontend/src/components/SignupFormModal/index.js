@@ -50,7 +50,7 @@ function SignupFormModal() {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
                         className="signup-fields"
@@ -60,7 +60,7 @@ function SignupFormModal() {
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
                         className="signup-fields"
@@ -70,7 +70,7 @@ function SignupFormModal() {
                         onChange={(e) => setFirstName(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
                         className="signup-fields"
@@ -80,7 +80,7 @@ function SignupFormModal() {
                         onChange={(e) => setLastName(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
                         className="signup-fields"
@@ -90,7 +90,7 @@ function SignupFormModal() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
-                </label><br />
+                </label>
                 <label>
                     <input
                         className="signup-fields-bottom"

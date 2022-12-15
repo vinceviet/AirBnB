@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+
+.create-container {
+    text-align: left;
+    padding: 24px;
+    width: 568px;
+    height: 700px;
+}
+
+.create-header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.create-fields {
+    border: 1px solid #bababa;
+    font-size: 18px;
+    padding-left: 10px;
+    width: 520px;
+    height: 52px;
+}
+
+.create-fields-top {
+    border: 1px solid #bababa;
+    font-size: 18px;
+    padding-left: 10px;
+    width: 520px;
+    height: 52px;
+    border-radius: 8px 8px 0 0;
+}
+
+.create-fields-bottom {
+    border: 1px solid #bababa;
+    font-size: 18px;
+    padding-left: 10px;
+    width: 520px;
+    height: 52px;
+    border-radius: 0 0 8px 8px;
+}
+
+#create-button {
+    display: block;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 48px;
+    margin-top: 30px;
+    border-radius: 6px;
+    background-image: radial-gradient(circle at center center,
+            rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%,
+            rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
+            rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+}
