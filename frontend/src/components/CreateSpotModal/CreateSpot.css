@@ -6,7 +6,8 @@
     text-align: left;
     padding: 24px;
     width: 568px;
-    height: 700px;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 .create-header {

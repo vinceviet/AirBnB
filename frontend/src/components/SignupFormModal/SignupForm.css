@@ -6,10 +6,11 @@
     text-align: left;
     padding: 24px;
     width: 568px;
-    height: 600px;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
-.signup-header{
+.signup-header {
     text-align: center;
     font-weight: bold;
     font-size: 18px;

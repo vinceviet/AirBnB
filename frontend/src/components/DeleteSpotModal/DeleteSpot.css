@@ -14,15 +14,22 @@
     justify-content: space-between;
 }
 
-#delete-cancel-button {
+#cancel-button {
     display: block;
     color: white;
     border: none;
     width: 100px;
     height: 25px;
     border-radius: 6px;
-    background-image: radial-gradient(circle at center center,
-            rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%,
-            rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
-            rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+    background-color: black;
+}
+
+#delete-button {
+    display: block;
+    color: white;
+    border: none;
+    width: 100px;
+    height: 25px;
+    border-radius: 6px;
+    background-color: rgb(251, 2, 2);
 }
