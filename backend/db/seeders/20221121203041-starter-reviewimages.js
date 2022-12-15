@@ -12,15 +12,15 @@ module.exports = {
     await queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
-        url: 'reviewplaceholder1.com'
+        url: 'https://a0.muscache.com/im/pictures/60488858/e4d0124b_original.jpg?im_w=960'
       },
       {
         reviewId: 2,
-        url: 'reviewplaceholder2.com'
+        url: 'https://a0.muscache.com/im/pictures/60488793/a6b3d128_original.jpg?im_w=720'
       },
       {
         reviewId: 3,
-        url: 'reviewplaceholder3.com'
+        url: 'https://a0.muscache.com/im/pictures/60488974/fc5433e4_original.jpg?im_w=720'
       },
     ], {})
   },
