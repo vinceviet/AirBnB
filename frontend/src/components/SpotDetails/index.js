@@ -86,7 +86,7 @@ const SpotDetails = () => {
                         <OpenModalMenuItem
                             itemText="Modify Listing"
                             onItemClick={closeMenu}
-                            modalComponent={<EditSpotModal spotId={spotId} />}
+                            modalComponent={<EditSpotModal spotId={spotId} user={sessionUser}/>}
                         />
                     </div>
                     <div className="delete-edit-button">

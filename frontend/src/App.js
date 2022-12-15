@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
-import SpotDetails from "./components/SpotDetails/SpotDetails";
+import SpotDetails from "./components/SpotDetails";
 
 function App() {
   const dispatch = useDispatch();

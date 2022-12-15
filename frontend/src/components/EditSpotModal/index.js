@@ -4,7 +4,7 @@ import { editSpot } from '../../store/spotsReducer';
 import { useModal } from '../../context/Modal';
 import './EditSpot.css';
 
-export default function EditSpotModal({ spotId }) {
+export default function EditSpotModal({ spotId, sessionUser }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const spot = useSelector(state => state.spots[spotId])
@@ -17,16 +17,19 @@ export default function EditSpotModal({ spotId }) {
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
     const [price, setPrice] = useState(spot.price);
-    const [spotImages, setSpotImages] = useState(spot.SpotImages)
+    const [SpotImages, setSpotImages] = useState(spot.SpotImages)
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
+    const [Owner, setOwner] = useState(spot.Owner);
+    const [starRating, setStarRating] = useState(spot.avgStarRating);
+    const [numReviews, setNumReviews] = useState(spot.numReviews);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const editedSpot = {
-            id: spotId, address, city, state, country, name, description, price, lat, lng, SpotImages: spotImages
+            id: spotId, address, city, state, country, name, description, price,
+            lat, lng, Owner, SpotImages, starRating, numReviews
         }
         await dispatch(editSpot(editedSpot))
             .then(closeModal)

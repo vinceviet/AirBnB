@@ -27,9 +27,9 @@ export default function CreatSpotModal() {
             address, city, state, country, name, description, price, lat, lng,
         }
 
-        const newImg = { url, preview: true };
+        // const newImg = { url, preview: true };
 
-        const createdSpot = await dispatch(createSpot(newSpot, newImg))
+        await dispatch(createSpot(newSpot))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
