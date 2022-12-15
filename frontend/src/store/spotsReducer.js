@@ -50,26 +50,21 @@ export const createSpot = (newSpot, newImg) => async dispatch => {
     });
     if (res.ok) {
         const spot = await res.json();
+        newImg.spotId = spot.id;
+        await csrfFetch(`/api/spots/${spot.id}/images`,{
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newImg)
+        });
+        if(res.ok){
+            spot.previewImage = newImg.url;
+        }
         dispatch(create(spot));
-        // const res = await csrfFetch(`/api/spots/${spot.id}/images`, {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(newImg)
-        // });
-        // if (res.ok) {
-        //     const img = await res.json();
-        //     dispatch(addImage(img));
-        //     console.log('createthunkimg', img)
-        // }
-
-        console.log('createthunk', spot);
-
         return spot
     };
 };
 
 export const editSpot = (spot) => async dispatch => {
-    console.log('passed', spot);
     const res = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -77,9 +72,7 @@ export const editSpot = (spot) => async dispatch => {
     });
     if (res.ok) {
         const updatedSpot = await res.json();
-        console.log('editthunk', updatedSpot);
         const fullSpot = {...updatedSpot, ...spot}
-        console.log('fullspot', fullSpot)
         dispatch(edit(fullSpot));
         return fullSpot;
     };

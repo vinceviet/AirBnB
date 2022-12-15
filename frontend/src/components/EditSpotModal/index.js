@@ -8,7 +8,6 @@ export default function EditSpotModal({ spotId, sessionUser }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const spot = useSelector(state => state.spots[spotId])
-    console.log('editspot', spot)
 
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);

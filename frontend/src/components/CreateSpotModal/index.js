@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createSpot } from "../../store/spotsReducer";
-import { addSpotImage } from "../../store/spotsReducer";
 import './CreateSpot.css';
 
 export default function CreatSpotModal() {
@@ -26,10 +25,9 @@ export default function CreatSpotModal() {
         const newSpot = {
             address, city, state, country, name, description, price, lat, lng,
         }
+        const newImg = { url, preview: true };
 
-        // const newImg = { url, preview: true };
-
-        await dispatch(createSpot(newSpot))
+        await dispatch(createSpot(newSpot, newImg))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
