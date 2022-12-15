@@ -1,0 +1,21 @@
+
+.demo-container {
+    text-align: center;
+    padding: 24px;
+    width: 250px;
+    height: 250px;
+}
+
+#demo-button {
+    display: block;
+    color: white;
+    border: none;
+    width: 100%;
+    height: 48px;
+    margin-top: 30px;
+    border-radius: 6px;
+    background-image: radial-gradient(circle at center center,
+            rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%,
+            rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
+            rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+}

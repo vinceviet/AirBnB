@@ -1,9 +1,112 @@
 .spot-details {
     display: grid;
-    grid-auto-flow: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .25fr .25fr 4fr 2fr;
+    grid-template-areas:
+        "name name"
+        "info info"
+        "img1 img2"
+        "description price";
+        padding: 0 80px 0 80px;
+}
+
+#name{
+    grid-area: name;
+    margin-bottom: -10px;
+    font-size: 33px;
+}
+
+.spot-info {
+    grid-area: info;
+    display: flex;
+    font-size: 16px;
+    gap: 8px;
 }
 
 .main-img {
-    width: 30px;
+    grid-area: img1;
+    width: 100%;
+    height: 354px;
+    border-radius: 12px 0 0 12px;
+    padding-right: 8px;
+}
+
+.sub-images{
+    display: block;
+}
+
+.sub-img1{
+    grid-area: img2;
+    width: 293px;
+    height: 175px;
+    padding: 0 7px 4px 0;
+}
+
+.sub-img2{
+    grid-area: img2;
+    width: 293px;
+    height: 175px;
+    padding-bottom: 4px;
+    border-radius: 0 12px 0 0;
+}
+
+.sub-img3{
+    grid-area: img2;
+    width: 293px;
+    height: 175px;
+    padding-right: 7px;
+}
+
+.sub-img4{
+    grid-area: img2;
+    width: 293px;
+    height: 175px;
+    border-radius: 0 0 12px 0;
+}
+
+.description{
+    grid-area: description;
+    padding-top: 15px;
+}
+
+#beds{
+    margin-top: -15px;
+}
+
+#descript{
+    margin-top: -20px;
+}
+
+.price{
+    grid-area: price;
+    font-size: 30px;
+    padding-top: 15px;
+}
+
+#night{
+    font-size: 20px;
+    padding-left: 8px;
+}
+
+.delete-edit{
+    display: flex;
+    list-style: none;
+    padding: 0 80px 0 80px;
+    justify-content: space-between;
+
+}
+
+.delete-edit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none;
+    width: 150px;
     height: 30px;
+    border-radius: 6px;
+    background-image: radial-gradient(circle at center center,
+            rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%,
+            rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
+            rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import "./DemoUser.css";
 
 function DemoUser() {
     const dispatch = useDispatch();
@@ -18,10 +19,10 @@ function DemoUser() {
     };
 
     return (
-        <div id="login-inputs">
+        <div className="demo-container">
             <h1>Demo User Login</h1>
             <form onSubmit={handleSubmit}>
-                <button type="submit">Log In</button>
+                <button id="demo-button" type="submit">Log In</button>
             </form>
         </div>
     );
