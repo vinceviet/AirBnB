@@ -18,8 +18,12 @@ const SpotDetails = () => {
     console.log(spot);
 
     let url;
-    if (!spot) url = null
+    if (!spot.SpotImages) url = null
     else url = spot.SpotImages[0].url
+
+    let firstName;
+    if(!spot.Owner) firstName = null;
+    else firstName = spot.Owner.firstName;
 
     const openMenu = () => {
         if (showMenu) return;
@@ -65,7 +69,7 @@ const SpotDetails = () => {
                         <img className="sub-img4" src="https://a0.muscache.com/im/pictures/b7c661f3-1b24-4725-808b-ec3d9031a078.jpg?im_w=720" alt="img" />
                     </div>
                     <div className="descripton">
-                        <h3>Entire Spot hosted by {spot.Owner.firstName}</h3>
+                        <h3>Entire Spot hosted by {firstName}</h3>
                         <p id="beds">4 guests &middot; 2 bedrooms &middot; 3 beds &middot; 2 bath</p>
                         <li className="header-divider"></li>
                         <p id="descript">{`${spot.description}`}</p>
@@ -109,7 +113,7 @@ const SpotDetails = () => {
                 <img className="sub-img4" src="https://a0.muscache.com/im/pictures/b7c661f3-1b24-4725-808b-ec3d9031a078.jpg?im_w=720" alt="img" />
             </div>
             <div className="descripton">
-                <h3>Entire Spot hosted by {spot.Owner.firstName}</h3>
+                <h3>Entire Spot hosted by {firstName}</h3>
                 <p id="beds">4 guests &middot; 2 bedrooms &middot; 3 beds &middot; 2 bath</p>
                 <li className="header-divider"></li>
                 <p id="descript">{`${spot.description}`}</p>

@@ -20,7 +20,7 @@
     grid-area: info;
     display: flex;
     font-size: 16px;
-    gap: 8px;
+    gap: 5px;
 }
 
 .main-img {

@@ -1,17 +1,24 @@
+body {
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif
+}
+
 .profile-dropdown {
     position: absolute;
-    right: 80px;
+    right: 40px;
+    top: 45px;
+    width: 240px;
     background-color: white;
     border-radius: 12px;
     list-style: none;
-    padding: 15px 50px 15px 10px;
     box-shadow: 0 2px 16px rgb(0 0 0 / 14%);
+    padding-inline-start: 0;
 }
 
-.dropdown-divider{
+.dropdown-divider {
     background-color: #ddd;
     height: 1px;
     width: 100%;
+    margin: 15px 0 15px 0;
 }
 
 .hidden {
@@ -25,6 +32,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: solid #ddd 1px;
+    background-color: white;
     padding: 10px 40px 15px 40px;
 }
 
@@ -47,12 +55,29 @@
     box-shadow: 0 2px 5px #ddd;
 }
 
-.login-signup>li {
-    padding: 10px;
+.login-signup-container{
+    width: 100%;
+    padding: 10px 0 10px 0;
 }
 
-.login-signup>li:hover {
-    background-color: rgb(227, 221, 221);
+.login-signup-container>div:hover {
+    background-color: rgb(231, 221, 221);
+    width: 100%;
+}
+
+#login {
+    margin: 10px 0 10px 5px;
+    padding-left: 10px;
+}
+
+#signup {
+    margin: 20px 0 10px 5px;
+    padding-left: 10px;
+}
+
+#demo-user {
+    margin: 0 0 10px 5px;
+    padding-left: 10px;
 }
 
 #bars-icon {
@@ -66,4 +91,44 @@
     height: 30px;
     opacity: 0.4;
     margin-left: 10px;
+}
+
+#username {
+    margin: 20px 0 10px 5px;
+    padding-left: 10px;
+}
+
+#fullname {
+    margin: 10px 0 10px 5px;
+    padding-left: 10px;
+}
+
+#email {
+    margin: 10px 0 10px 5px;
+    padding-left: 10px;
+}
+
+#create-current-user{
+    margin: 10px 0 10px 5px;
+    padding-left: 10px;
+}
+
+
+#create-current-user:hover {
+    background-color: rgb(231, 221, 221);
+    width: 100%;
+}
+
+#profile-logout{
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+#profile-logout:hover{
+    background-color: rgb(231, 221, 221);
+    width: 100%;
+    text-align: left;
 }

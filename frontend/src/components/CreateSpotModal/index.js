@@ -41,6 +41,7 @@ export default function CreatSpotModal() {
                 <button id="cancel-x" onClick={closeModal}>X</button>
                 Create a listing
             </header>
+            <li className="header-divider"></li>
             <h1>Home Information</h1>
             <form onSubmit={handleSubmit}>
                 <ul>

@@ -22,6 +22,7 @@
     padding-left: 10px;
     width: 520px;
     height: 52px;
+    border-bottom: none;
 }
 
 .edit-fields-top {
@@ -31,6 +32,7 @@
     width: 520px;
     height: 52px;
     border-radius: 8px 8px 0 0;
+    border-bottom: none;
 }
 
 .edit-fields-bottom {
