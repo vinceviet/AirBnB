@@ -1,4 +1,5 @@
 const express = require('express');
+const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { requireAuth } = require('../../utils/auth.js');
@@ -68,12 +69,12 @@ router.put('/:reviewId', requireAuth, validateReview, async (req, res) => {
 });
 
 // Delete a Review
-router.delete('/:reviewId', requireAuth, async (req, res) => {
+router.delete('/:reviewId', requireAuth, asyncHandler(async (req, res) => {
     const review = await Review.findByPk(req.params.reviewId);
     if (!review) return res.status(404).json({ message: "Review couldn't be found", statusCode: 404 });
     if (review.toJSON().userId !== req.user.id) return res.status(403).json({ messsage: 'Forbidden', statusCode: 403 });
     await review.destroy();
     res.json({ message: "Successfully deleted", statusCode: 200 });
-});
+}));
 
 module.exports = router;

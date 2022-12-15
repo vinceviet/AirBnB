@@ -213,7 +213,7 @@ router.delete('/:spotId', requireAuth, asyncHandler(async (req, res) => {
 }));
 
 // Get all Reviews by a Spot's id
-router.get('/:spotId/reviews', async (req, res) => {
+router.get('/:spotId/reviews', asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
     const spotReviews = await Review.findAll({
         where: { spotId: req.params.spotId },
@@ -226,10 +226,10 @@ router.get('/:spotId/reviews', async (req, res) => {
     const spotReviewList = {};
     spotReviewList.Reviews = spotReviews;
     res.json(spotReviewList);
-});
+}));
 
 // Create a Review for a Spot based on the the Spot's id
-router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, validateReviewPost, asyncHandler(async (req, res) => {
     let spot = await Spot.findByPk(req.params.spotId, {
         include: { model: Review }
     });
@@ -246,7 +246,7 @@ router.post('/:spotId/reviews', requireAuth, validateReviewPost, async (req, res
         stars
     });
     res.json(newReview);
-});
+}));
 
 // Get all Bookings for a Spot based on the Spot's id
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
