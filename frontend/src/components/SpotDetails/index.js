@@ -6,6 +6,7 @@ import EditSpotModal from '../EditSpotModal';
 import { useRef } from 'react';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteSpotModal from '../DeleteSpotModal';
+import Reviews from '../Reviews';
 import './SpotDetails.css';
 
 const SpotDetails = () => {
@@ -80,6 +81,9 @@ const SpotDetails = () => {
                     <tb className="price">
                         <span>{`$${spot.price}`}</span><span id="night">night</span>
                     </tb>
+                </div>
+                <div className="reviews">
+                    <Reviews />
                 </div>
                 <div className="delete-edit">
                     <div className="delete-edit-button">
