@@ -17,11 +17,13 @@ const SpotDetails = () => {
     const ulRef = useRef();
 
     let url;
-    if (!spot.SpotImages) url = null
+    if (!spot) url = null
+    else if(!spot.SpotImages) url = null
     else url = spot.SpotImages[0].url
 
     let firstName;
-    if(!spot.Owner) firstName = null;
+    if (!spot) firstName = null;
+    else if(!spot.Owner) firstName = null;
     else firstName = spot.Owner.firstName;
 
     const openMenu = () => {
@@ -49,7 +51,9 @@ const SpotDetails = () => {
         dispatch(getSpotDetails(spotId))
     }, []);
 
+
     if (!spot) return null;
+
     if (sessionUser && sessionUser.id === spot.ownerId) {
         return (
             <>

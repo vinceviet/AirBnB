@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createSpot } from "../../store/spotsReducer";
+import { addSpotImage } from "../../store/spotsReducer";
 import './CreateSpot.css';
 
 export default function CreatSpotModal() {
@@ -13,7 +14,7 @@ export default function CreatSpotModal() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [previewImage, setPreviewImage] = useState("https://a0.muscache.com/im/pictures/miso/Hosting-54377075/original/7522445e-f002-44d0-805a-46a0ce1af323.jpeg?im_w=720");
+    const [url, setUrl] = useState("https://a0.muscache.com/im/pictures/miso/Hosting-54377075/original/7522445e-f002-44d0-805a-46a0ce1af323.jpeg?im_w=720");
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
     const [errors, setErrors] = useState([]);
@@ -23,10 +24,12 @@ export default function CreatSpotModal() {
         e.preventDefault();
 
         const newSpot = {
-            address, city, state, country, name, description, price, lat, lng, previewImage
+            address, city, state, country, name, description, price, lat, lng,
         }
 
-        await dispatch(createSpot(newSpot))
+        const newImg = { url, preview: true };
+
+        const createdSpot = await dispatch(createSpot(newSpot, newImg))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
@@ -121,8 +124,8 @@ export default function CreatSpotModal() {
                         className="create-fields-bottom"
                         type="url"
                         placeholder="Preview Image URL"
-                        value={previewImage}
-                        onChange={(e) => setPreviewImage(e.target.value)}
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
                         required
                     />
                 </label>

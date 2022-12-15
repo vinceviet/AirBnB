@@ -7,7 +7,8 @@ import './EditSpot.css';
 export default function EditSpotModal({ spotId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const spot = useSelector(state => state.spots)
+    const spot = useSelector(state => state.spots[spotId])
+    console.log('editspot', spot)
 
     const [address, setAddress] = useState(spot.address);
     const [city, setCity] = useState(spot.city);
@@ -15,7 +16,8 @@ export default function EditSpotModal({ spotId }) {
     const [country, setCountry] = useState(spot.country);
     const [name, setName] = useState(spot.name);
     const [description, setDescription] = useState(spot.description);
-    const [price, setPrice] = useState(spot.prcie);
+    const [price, setPrice] = useState(spot.price);
+    const [spotImages, setSpotImages] = useState(spot.SpotImages)
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
     const [errors, setErrors] = useState([]);
@@ -24,7 +26,7 @@ export default function EditSpotModal({ spotId }) {
         e.preventDefault();
 
         const editedSpot = {
-            id: spotId, address, city, state, country, name, description, price, lat, lng,
+            id: spotId, address, city, state, country, name, description, price, lat, lng, SpotImages: spotImages
         }
         await dispatch(editSpot(editedSpot))
             .then(closeModal)
@@ -50,7 +52,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields-top"
                         type="text"
-                        placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                     />
@@ -59,7 +60,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields"
                         type="text"
-                        placeholder="City"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                     />
@@ -68,7 +68,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields"
                         type="text"
-                        placeholder="State"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
                     />
@@ -77,7 +76,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields"
                         type="text"
-                        placeholder="Country"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
                     />
@@ -86,7 +84,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields"
                         type="text"
-                        placeholder="Home Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
@@ -95,7 +92,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields"
                         type="text"
-                        placeholder="Describe your home"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                     />
@@ -104,7 +100,6 @@ export default function EditSpotModal({ spotId }) {
                     <input
                         className="edit-fields-bottom"
                         type="text"
-                        placeholder="Set price per night"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
