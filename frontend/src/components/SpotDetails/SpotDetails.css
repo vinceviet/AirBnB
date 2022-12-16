@@ -75,6 +75,8 @@
 
 #descript{
     margin-top: -20px;
+    padding-bottom: 40px;
+    border-bottom: solid 1px #dddd;
 }
 
 .price{

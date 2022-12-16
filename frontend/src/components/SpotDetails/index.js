@@ -19,12 +19,12 @@ const SpotDetails = () => {
 
     let url;
     if (!spot) url = null
-    else if(!spot.SpotImages) url = null
+    else if (!spot.SpotImages) url = null
     else url = spot.SpotImages[0].url
 
     let firstName;
     if (!spot) firstName = null;
-    else if(!spot.Owner) firstName = null;
+    else if (!spot.Owner) firstName = null;
     else firstName = spot.Owner.firstName;
 
     const openMenu = () => {
@@ -83,14 +83,14 @@ const SpotDetails = () => {
                     </tb>
                 </div>
                 <div className="reviews">
-                    <Reviews />
+                    <Reviews spotId={spotId} spot={spot} />
                 </div>
                 <div className="delete-edit">
                     <div className="delete-edit-button">
                         <OpenModalMenuItem
                             itemText="Modify Listing"
                             onItemClick={closeMenu}
-                            modalComponent={<EditSpotModal spotId={spotId} user={sessionUser}/>}
+                            modalComponent={<EditSpotModal spotId={spotId} user={sessionUser} />}
                         />
                     </div>
                     <div className="delete-edit-button">
@@ -128,6 +128,9 @@ const SpotDetails = () => {
             <tb className="price">
                 <span>{`$${spot.price}`}</span><span id="night">night</span>
             </tb>
+            <div className="reviews">
+                <Reviews spotId={spotId} spot={spot} />
+            </div>
         </div>
     );
 };
