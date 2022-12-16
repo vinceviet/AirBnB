@@ -19,6 +19,7 @@
     "e e";
     align-items: start;
     color: black;
+    aspect-ratio: auto;
 }
 
 .spot-cards:link{

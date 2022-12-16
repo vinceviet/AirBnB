@@ -7,12 +7,15 @@ import { useRef } from 'react';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteSpotModal from '../DeleteSpotModal';
 import Reviews from '../Reviews';
+import CreateReviewModal from '../CreateReviewModal';
 import './SpotDetails.css';
+import DeleteReviewModal from '../DeleteReviewModal';
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
     const { spotId } = useParams();
     const spot = useSelector(state => state.spots[spotId]);
+    const reviews = Object.values(useSelector(state => state.reviews));
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef();
@@ -51,7 +54,6 @@ const SpotDetails = () => {
     useEffect(() => {
         dispatch(getSpotDetails(spotId))
     }, []);
-
 
     if (!spot) return null;
 
@@ -131,6 +133,22 @@ const SpotDetails = () => {
             <div className="reviews">
                 <Reviews spotId={spotId} spot={spot} />
             </div>
+            <div className="create-review">
+                <OpenModalMenuItem
+                    itemText="Create a Review"
+                    onItemClick={closeMenu}
+                    modalComponent={<CreateReviewModal spotId={spotId} user={sessionUser}/>}
+                />
+            </div>
+            {sessionUser && reviews.find(review => sessionUser.id === review.userId) && (
+                <div className="delete-review">
+                    <OpenModalMenuItem
+                        itemText="Delete a Review"
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteReviewModal reviews={reviews} user={sessionUser} spotId={spotId}/>}
+                    />
+                </div>
+            )}
         </div>
     );
 };

@@ -110,8 +110,8 @@ export default function CreatSpotModal() {
                 <label>
                     <input
                         className="create-fields"
-                        type="text"
-                        placeholder="Set price per night"
+                        type="number"
+                        placeholder="Set price per night: must be a number greater then 1"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         required

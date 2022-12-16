@@ -34,6 +34,7 @@ const Reviews = ({ spotId, spot }) => {
         dispatch(getReviews(spotId));
     }, []);
 
+    if (!reviews) return null;
 
     return (
         <>
@@ -42,7 +43,7 @@ const Reviews = ({ spotId, spot }) => {
                 {reviews.map(review => {
                     return (
                         <div className="review-card">
-                            <div clasName="review-header">
+                            <div className="review-header">
                                 <span>{review.User.firstName}</span><br />
                                 <span id="date">{formatDate(review.createdAt)}</span>
                             </div>

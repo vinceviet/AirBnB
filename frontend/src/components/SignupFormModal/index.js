@@ -55,7 +55,7 @@ function SignupFormModal() {
                     <input
                         className="signup-fields"
                         type="text"
-                        placeholder="Username"
+                        placeholder="Username: must be at least 4 characters"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
@@ -85,7 +85,7 @@ function SignupFormModal() {
                     <input
                         className="signup-fields"
                         type="password"
-                        placeholder="Password"
+                        placeholder="Password: must be at least 6 characters"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
