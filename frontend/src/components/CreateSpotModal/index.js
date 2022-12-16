@@ -13,7 +13,8 @@ export default function CreatSpotModal() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [url, setUrl] = useState("https://a0.muscache.com/im/pictures/miso/Hosting-54377075/original/7522445e-f002-44d0-805a-46a0ce1af323.jpeg?im_w=720");
+    const [url, setUrl] = useState("");
+    // const [url, setUrl] = useState("https://a0.muscache.com/im/pictures/miso/Hosting-54377075/original/7522445e-f002-44d0-805a-46a0ce1af323.jpeg?im_w=720");
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
     const [errors, setErrors] = useState([]);
