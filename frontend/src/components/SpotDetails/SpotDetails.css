@@ -1,11 +1,12 @@
 .spot-details-container {
-        display: flex;
-        flex-direction: column;
-        padding: 0 80px 0 80px;
-        position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 0 80px 0 80px;
+    position: absolute;
+    z-index: -1;
 }
 
-#name{
+#name {
     margin-bottom: -10px;
     font-size: 33px;
 }
@@ -16,7 +17,7 @@
     gap: 5px;
 }
 
-.img-container{
+.img-container {
     display: flex;
 }
 
@@ -27,66 +28,66 @@
     padding-right: 8px;
 }
 
-.sub-images{
+.sub-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
 
-.sub-img1{
+.sub-img1 {
     width: 250px;
     height: 150px;
     padding: 0 8px 8px 0;
 }
 
-.sub-img2{
+.sub-img2 {
     width: 250px;
     height: 150px;
     padding-bottom: 8px;
     border-radius: 0 12px 0 0;
 }
 
-.sub-img3{
+.sub-img3 {
     width: 250px;
     height: 150px;
     padding-right: 8px;
 }
 
-.sub-img4{
+.sub-img4 {
     width: 250px;
     height: 150px;
     border-radius: 0 0 12px 0;
 }
 
-.description-and-buttons-container{
+.description-and-buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-top: 48px;
 }
 
-.description-container{
+.description-container {
     width: 60%;
 }
 
-#beds{
+#beds {
     margin-top: -15px;
     padding-bottom: 24px;
     border-bottom: solid 1px #ddd;
 }
 
-#descript{
+#descript {
     padding: 32px 0 32px 0;
 }
 
-#divider{
+#divider {
     background-color: #ddd;
     height: 1px;
     width: 100%;
     list-style: none;
 }
 
-.price-and-buttons-container{
+.price-and-buttons-container {
     display: flex;
     flex-direction: column;
     width: 347px;
@@ -96,34 +97,35 @@
     margin-left: 40px;
 }
 
-#price{
+#price {
     font-size: 22px;
-    padding-top: 15px;
     font-weight: bold;
 }
 
-#night{
+/* #night {
     font-size: 20px;
     padding-left: 4px;
-}
+} */
 
-.price-reviews-container{
-padding: 20px;
-}
-
-.review-info-container{
+.review-info-container {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 20px;
     font-size: 12px;
-    text-align: right;
 }
 
-.owner-buttons{
+.owner-buttons {
     display: flex;
     flex-direction: column;
     list-style: none;
     padding: 0 80px 0 80px;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.detail-page-buttons{
+.detail-page-buttons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -139,7 +141,7 @@ padding: 20px;
             rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
 }
 
-.review-buttons{
+.review-buttons {
     display: flex;
     padding: 32px 0 32px 0;
     justify-content: space-between;

@@ -82,12 +82,12 @@ const SpotDetails = () => {
                     <li id="divider"></li>
                 </div>
                 <div className="price-and-buttons-container">
-                    <div className="price-reviews-container">
-                        <div className='review-info-container'>
-                            <span><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgStarRating).toFixed(1)} &middot;</span>
-                            <span>{spot.numReviews} Reviews</span>
+                    <div className='review-info-container'>
+                        <span id="price">{`$${spot.price} night`}</span>
+                        <div>
+                        <span><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgStarRating).toFixed(1)} &middot;</span>
+                        <span>{`${spot.numReviews} Reviews`}</span>
                         </div>
-                        <span id="price">{`$${spot.price}`}</span><span id="night">night</span>
                     </div>
                     {sessionUser && sessionUser.id === spot.ownerId && (
                         <div className="owner-buttons">
@@ -113,22 +113,23 @@ const SpotDetails = () => {
                 <Reviews spotId={spotId} spot={spot} />
             </div>
             <div className="review-buttons">
-
-                <div className="detail-page-buttons">
-                    <OpenModalMenuItem
-                        itemText="Create a Review"
-                        onItemClick={closeMenu}
-                        modalComponent={<CreateReviewModal spotId={spotId} user={sessionUser} />}
-                    />
-                </div>
-                {sessionUser && reviews.find(review => sessionUser.id === review.userId) && (
-                    <div className="detail-page-buttons">
-                        <OpenModalMenuItem
-                            itemText="Delete a Review"
-                            onItemClick={closeMenu}
-                            modalComponent={<DeleteReviewModal reviews={reviews} user={sessionUser} spotId={spotId} />}
-                        />
-                    </div>
+                {sessionUser && sessionUser.id !== spot.ownerId && (
+                    <>
+                        <div className="detail-page-buttons">
+                            <OpenModalMenuItem
+                                itemText="Create a Review"
+                                onItemClick={closeMenu}
+                                modalComponent={<CreateReviewModal spotId={spotId} user={sessionUser} />}
+                            />
+                        </div>
+                        <div className="detail-page-buttons">
+                            <OpenModalMenuItem
+                                itemText="Delete a Review"
+                                onItemClick={closeMenu}
+                                modalComponent={<DeleteReviewModal reviews={reviews} user={sessionUser} spotId={spotId} />}
+                            />
+                        </div>
+                    </>
                 )}
             </div>
         </div>

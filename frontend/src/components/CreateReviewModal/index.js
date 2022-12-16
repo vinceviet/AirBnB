@@ -15,11 +15,16 @@ export default function CreateReviewModal({ spotId, user }) {
         e.preventDefault();
         const newReview = { review, stars }
 
-        await dispatch(createReview(spotId,user, newReview))
+        await dispatch(createReview(spotId, user, newReview))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
+                const validationErrors = [];
                 if (data && data.errors) setErrors(data.errors);
+                if (data && data.message){
+                    validationErrors.push(data.message);
+                    setErrors(validationErrors);
+                };
             });
     };
 

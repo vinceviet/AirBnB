@@ -4,6 +4,7 @@ body {
 
 .profile-dropdown {
     position: absolute;
+    z-index: 5;
     right: 40px;
     top: 45px;
     width: 240px;
