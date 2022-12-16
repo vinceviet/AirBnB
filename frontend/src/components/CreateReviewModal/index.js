@@ -26,6 +26,7 @@ export default function CreateReviewModal({ spotId, user }) {
                     setErrors(validationErrors);
                 };
             });
+            
     };
 
     return (

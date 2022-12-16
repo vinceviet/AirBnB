@@ -1,4 +1,4 @@
-    import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
 const LOAD_SPOTS = 'spots/loadSpots';
 const SPOT_DETAILS = 'spots/spotDetails';
@@ -42,7 +42,7 @@ export const getSpotDetails = (spotId) => async dispatch => {
     };
 };
 
-export const createSpot = (newSpot, newImg) => async dispatch => {
+export const createSpot = (newSpot, newImg, history) => async dispatch => {
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,15 +51,16 @@ export const createSpot = (newSpot, newImg) => async dispatch => {
     if (res.ok) {
         const spot = await res.json();
         newImg.spotId = spot.id;
-        await csrfFetch(`/api/spots/${spot.id}/images`,{
+        await csrfFetch(`/api/spots/${spot.id}/images`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newImg)
         });
-        if(res.ok){
+        if (res.ok) {
             spot.previewImage = newImg.url;
         }
         dispatch(create(spot));
+        history.push(`/spots/${spot.id}`);
         return spot
     };
 };
@@ -72,7 +73,7 @@ export const editSpot = (spot) => async dispatch => {
     });
     if (res.ok) {
         const updatedSpot = await res.json();
-        const fullSpot = {...updatedSpot, ...spot}
+        const fullSpot = { ...updatedSpot, ...spot }
         dispatch(edit(fullSpot));
         return fullSpot;
     };

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { createSpot } from "../../store/spotsReducer";
 import './CreateSpot.css';
 
 export default function CreatSpotModal() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
@@ -28,7 +30,7 @@ export default function CreatSpotModal() {
         }
         const newImg = { url, preview: true };
 
-        await dispatch(createSpot(newSpot, newImg))
+        const createdSpot = await dispatch(createSpot(newSpot, newImg, history))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
