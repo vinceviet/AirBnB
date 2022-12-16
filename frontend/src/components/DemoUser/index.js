@@ -6,8 +6,8 @@ import "./DemoUser.css";
 
 function DemoUser() {
     const dispatch = useDispatch();
-    const [credential, setCredential] = useState("Mugiwara");
-    const [password, setPassword] = useState("nakama4life");
+    const [credential, setCredential] = useState("Demomon");
+    const [password, setPassword] = useState("demomon");
     const { closeModal } = useModal();
 
     const handleSubmit = (e) => {

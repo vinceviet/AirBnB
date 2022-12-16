@@ -19,7 +19,7 @@ module.exports = {
         lat: 45.123124,
         lng: 95.2532352,
         name: 'Occidental Cabin',
-        description: 'Rustic yet luxurious cabin in the Redwoods.',
+        description: 'Rustic yet luxurious cabin in the Redwoods, amenities include: a place to sleep, wifi, place to bathe, and other things houses have.',
         price: 500
       },
       {
@@ -31,7 +31,7 @@ module.exports = {
         lat: 55.234234,
         lng: 85.23424,
         name: 'Lakeside House',
-        description: 'Family lakehouse with private dock!',
+        description: 'Family lakehouse with private dock, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 695
       },
       {
@@ -43,7 +43,7 @@ module.exports = {
         lat: -50.1866,
         lng: 89.49312,
         name: 'Lakeside Loveshack',
-        description: 'Modern and cozy with firepit.',
+        description: 'Modern and cozy with firepit,, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 299
       },
       {
@@ -55,7 +55,7 @@ module.exports = {
         lat: -66.1866,
         lng: 77.49312,
         name: 'Treehouse',
-        description: 'Spend a relaxing time in a tree!',
+        description: 'Spend a relaxing time in a tree, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 500
       },
       {
@@ -67,7 +67,7 @@ module.exports = {
         lat: -65.1866,
         lng: -65.49312,
         name: 'Tahoe Beach Club',
-        description: 'Entire condo by the lakefront!',
+        description: 'Entire condo by the lakefront, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 299
       },
       {
@@ -79,7 +79,7 @@ module.exports = {
         lat: 70.1866,
         lng: 79.49312,
         name: 'Lakefront',
-        description: 'Enjoy a stay near the lake.',
+        description: 'Enjoy a stay near the lake, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 299
       },
       {
@@ -91,7 +91,7 @@ module.exports = {
         lat: 50.1866,
         lng: 59.49312,
         name: 'Zen House',
-        description: 'Enjoy a very peaceful stay.',
+        description: 'Enjoy a very peaceful stay, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 350
       },
       {
@@ -103,7 +103,7 @@ module.exports = {
         lat: 70.1866,
         lng: 79.49312,
         name: 'Whiskey Hollow',
-        description: 'Triangle house with good whiskey.',
+        description: 'Triangle house with good whiskey, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 449
       },
       {
@@ -115,7 +115,7 @@ module.exports = {
         lat: 10.1866,
         lng: 19.49312,
         name: 'Costal Cove',
-        description: 'Near beach, spas, and the harbor!',
+        description: 'Near beach, spas, and the harbor, amenities include: a place to sleep, wifi, place to bathe, and other things houses have',
         price: 449
       }
     ], {})
