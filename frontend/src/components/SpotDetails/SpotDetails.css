@@ -1,109 +1,135 @@
-.spot-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: .25fr .25fr 4fr 2fr;
-    grid-template-areas:
-        "name name"
-        "info info"
-        "img1 img2"
-        "description price";
+.spot-details-container {
+        display: flex;
+        flex-direction: column;
         padding: 0 80px 0 80px;
+        position: absolute;
 }
 
 #name{
-    grid-area: name;
     margin-bottom: -10px;
     font-size: 33px;
 }
 
-.spot-info {
-    grid-area: info;
+#spot-info {
     display: flex;
     font-size: 16px;
     gap: 5px;
 }
 
-.main-img {
-    grid-area: img1;
-    width: 100%;
-    height: 354px;
+.img-container{
+    display: flex;
+}
+
+#main-img {
+    width: 516px;
+    height: 300px;
     border-radius: 12px 0 0 12px;
     padding-right: 8px;
 }
 
 .sub-images{
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .sub-img1{
-    grid-area: img2;
-    width: 293px;
-    height: 175px;
-    padding: 0 7px 4px 0;
+    width: 250px;
+    height: 150px;
+    padding: 0 8px 8px 0;
 }
 
 .sub-img2{
-    grid-area: img2;
-    width: 293px;
-    height: 175px;
-    padding-bottom: 4px;
+    width: 250px;
+    height: 150px;
+    padding-bottom: 8px;
     border-radius: 0 12px 0 0;
 }
 
 .sub-img3{
-    grid-area: img2;
-    width: 293px;
-    height: 175px;
-    padding-right: 7px;
+    width: 250px;
+    height: 150px;
+    padding-right: 8px;
 }
 
 .sub-img4{
-    grid-area: img2;
-    width: 293px;
-    height: 175px;
+    width: 250px;
+    height: 150px;
     border-radius: 0 0 12px 0;
 }
 
-.description{
-    grid-area: description;
-    padding-top: 15px;
+.description-and-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 48px;
+}
+
+.description-container{
+    width: 60%;
 }
 
 #beds{
     margin-top: -15px;
+    padding-bottom: 24px;
+    border-bottom: solid 1px #ddd;
 }
 
 #descript{
-    margin-top: -20px;
-    padding-bottom: 40px;
-    border-bottom: solid 1px #dddd;
+    padding: 32px 0 32px 0;
 }
 
-.price{
-    grid-area: price;
-    font-size: 30px;
+#divider{
+    background-color: #ddd;
+    height: 1px;
+    width: 100%;
+    list-style: none;
+}
+
+.price-and-buttons-container{
+    display: flex;
+    flex-direction: column;
+    width: 347px;
+    border: solid 1px #ddd;
+    border-radius: 21px;
+    box-shadow: 0 0 5px #ddd;
+    margin-left: 40px;
+}
+
+#price{
+    font-size: 22px;
     padding-top: 15px;
+    font-weight: bold;
 }
 
 #night{
     font-size: 20px;
-    padding-left: 8px;
+    padding-left: 4px;
 }
 
-.delete-edit{
+.price-reviews-container{
+padding: 20px;
+}
+
+.review-info-container{
+    font-size: 12px;
+    text-align: right;
+}
+
+.owner-buttons{
     display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 0 80px 0 80px;
-    justify-content: space-between;
-
 }
 
-.delete-edit-button{
+.detail-page-buttons{
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     border: none;
+    list-style: none;
     width: 150px;
     height: 30px;
     border-radius: 6px;
@@ -111,4 +137,10 @@
             rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%,
             rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
             rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+}
+
+.review-buttons{
+    display: flex;
+    padding: 32px 0 32px 0;
+    justify-content: space-between;
 }

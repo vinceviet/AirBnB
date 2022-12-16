@@ -2,24 +2,29 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-auto-flow: auto;
-    padding: 0 80px 0 80px;
 }
 
 .review-card {
+    display: flex;
+    flex-direction: column;
     height: 150px;
-    width: 250px;
+    width: 100%;
     gap: 5px;
+    padding-right: 30px;
+    margin-bottom: 20px;
 }
 
-.review-header {
-    display: flex;
-}
 
 #date {
     color: rgba(156, 152, 152, 0.867);
     font-size: 12px;
 }
 
-#review-top {
-    padding: 0 80px 0 80px;
+#review-body {
+    text-align: left;
+    overflow-y: scroll;
+}
+
+#review-header {
+    padding: 28px 0 28px 0;
 }

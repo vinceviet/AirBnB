@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getReviews } from '../../store/reviewsReducer';
 import './Reviews.css';
@@ -38,15 +38,13 @@ const Reviews = ({ spotId, spot }) => {
 
     return (
         <>
-            <h2 id="review-top"><i className="fas fa-sharp fa-solid fa-star fa-xs" />{avgStarRating} &middot; {numReviews} reviews</h2>
+            <h2 id="review-header"><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(avgStarRating).toFixed(1)} &middot; {numReviews} reviews</h2>
             <div className="reviews-container">
                 {reviews.map(review => {
                     return (
                         <div className="review-card">
-                            <div className="review-header">
-                                <span>{review.User.firstName}</span><br />
-                                <span id="date">{formatDate(review.createdAt)}</span>
-                            </div>
+                            <span>{review.User.firstName}</span>
+                            <span id="date">{formatDate(review.createdAt)}</span>
                             <p id="review-body">{review.review}</p>
                         </div>
                     )
