@@ -19,8 +19,9 @@ export default function HomePage() {
                         <NavLink key={spot.name} className="spot-cards" to={`/spots/${spot.id}`}>
                             <img className="item1" src={spot.previewImage} alt={spot.previewImage} />
                             <span className="item2">{`${spot.city}, ${spot.state}`}</span>
-                            <span className="item3"><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgRating).toFixed(1)}</span>
-                            <span className="item4">{`$${spot.price} night`}</span>
+                            <span className="item3">{(Math.random() * (500 - 30) + 30).toFixed(0)} miles away</span>
+                            <span className="item4"><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgRating).toFixed(1)}</span>
+                            <span className="item5">{`$${spot.price} night`}</span>
                         </NavLink>
                     </div>
                 )

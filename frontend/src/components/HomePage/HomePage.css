@@ -1,6 +1,7 @@
 .spots-list {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    grid-template-rows: repeat( auto-fit, minmax(250px, 1fr) );
     padding: 10px 40px 10px 40px;
     gap: 2em;
     margin-top: 15px;
@@ -10,11 +11,12 @@
     display: grid;
     grid-template-columns: 1fr, 1fr;
     grid-template-rows: 4fr, 1fr, 1fr;
-    gap: 10px;
+    gap: 7px;
     grid-template-areas:
     "a a"
     "b c"
-    "d d";
+    "d d"
+    "e e";
     align-items: start;
     color: black;
 }
@@ -26,21 +28,27 @@
 .item1{
     grid-area: a;
     width: 100%;
-    height: 227px;
+    height: 283px;
     border-radius: 12px;
 }
 
 .item2{
     grid-area: b;
-    font-weight: bold;
+    white-space: nowrap;
+}
+
+.item3{
+    grid-area: d;
+    font-size: 14px;
+    color:rgb(143, 138, 138);
 }
 
 
-.item3{
+.item4{
     grid-area: c;
     text-align: right;
 }
 
-.item4{
-    grid-area: d;
+.item5{
+    grid-area: e;
 }
