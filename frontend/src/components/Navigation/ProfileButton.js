@@ -9,11 +9,13 @@ import CreatSpotModal from "../CreateSpotModal";
 import './Navigation.css';
 import barsIcon from "../../assets/bars-solid.svg";
 import userIcon from "../../assets/circle-user-solid.svg";
+import { useModal } from "../../context/Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const { setModalContent } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -44,12 +46,22 @@ function ProfileButton({ user }) {
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
+  const handleHomeCreate = () => {
+    user ? setModalContent(<CreatSpotModal />) :
+      setModalContent(<LoginFormModal />)
+  }
+
   return (
     <>
-      <button id="menu-items" onClick={openMenu}>
-        <img id="bars-icon" src={barsIcon} alt="fa-bars" />
-        <img id="user-icon" src={userIcon} alt="user-icon" />
-      </button>
+      <div className="top-right-nav">
+        <div>
+          <button id="create-spot-nav" onClick={handleHomeCreate}>Onebnb your Home</button>
+        </div>
+        <button id="menu-items" onClick={openMenu}>
+          <img id="bars-icon" src={barsIcon} alt="fa-bars" />
+          <img id="user-icon" src={userIcon} alt="user-icon" />
+        </button>
+      </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>

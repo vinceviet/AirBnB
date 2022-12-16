@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+// import SignupFormModal from "../SignupFormModal";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -23,6 +24,10 @@ function LoginFormModal() {
         }
       );
   };
+
+  // const handleNewUserClick = () =>{
+  //   closeModal.then(setModalContent(<SignupFormModal />))
+  // }
 
   return (
       <div id="login-container">
@@ -61,6 +66,9 @@ function LoginFormModal() {
           </label>
           <button id="login-button" type="submit">Continue</button>
         </form>
+        {/* <span className="new-user-redirect">
+          New User? <button id="new-user-redirect-button" onClick={handleNewUserClick}>Sign Up</button>
+        </span> */}
       </div>
   );
 }
