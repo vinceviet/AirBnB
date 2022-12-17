@@ -58,14 +58,15 @@ const SpotDetails = () => {
     if (!spot) return null;
 
     return (
-        <div className="top-container">
             <div className="spot-details-container">
+                <div className="details-header-container">
                 <h2 id="name">{spot.name}</h2>
                 <p id="spot-info">
                     <span><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgStarRating).toFixed(1)} &middot;</span>
                     <span>{spot.numReviews} Reviews &middot;</span>
                     <span>{`${spot.city}, ${spot.state}, ${spot.country}`}</span>
                 </p>
+                </div>
                 <div className="img-container">
                     <img id="main-img" src={url} alt={url} />
                     <div className="sub-images">
@@ -137,7 +138,6 @@ const SpotDetails = () => {
                     )}
                 </div>
             </div>
-        </div>
     );
 };
 

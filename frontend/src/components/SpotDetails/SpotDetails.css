@@ -1,45 +1,50 @@
-.top-container {
+.spot-details-container {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    padding: 0 80px;
-    justify-items: center;
-    z-index: -1;
-}
-
-.spot-details-container {
-    /* display: flex;
-    flex-direction: column;
-    position: absolute;
-    padding: 0 80px;
     justify-content: center;
-    z-index: -1; */
+    padding: 0 80px;
+    z-index: -1;
     width: 100%;
     height: 100%;
 }
 
+.details-header-container{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    padding-top: 24px;
+    max-width: 1024px;
+    width: 100%;
+}
+
 #name {
-    margin-bottom: -10px;
     font-size: 33px;
+    margin: 0;
 }
 
 #spot-info {
     display: flex;
-    font-size: 16px;
-    gap: 5px;
+    font-size: 14px;
+    margin: 0;
+    padding-top: 8px;
 }
 
 .img-container {
     display: flex;
-    padding: 0 80px;
+    padding-top: 24px;
     margin: auto;
+    max-width: 1024px;
+    width: 100%;
 }
 
 #main-img {
-    width: 560px;
+    max-width: 560px;
+    width: 100%;
     height: 300px;
     border-radius: 12px 0 0 12px;
     padding-right: 8px;
+    object-fit: cover;
 }
 
 .sub-images {
@@ -50,38 +55,45 @@
 
 .sub-img1 {
     width: 272px;
+    width: 100%;
     height: 150px;
     padding: 0 8px 8px 0;
+    object-fit: cover;
 }
 
 .sub-img2 {
-    width: 272px;
+    max-width: 272px;
+    width: 100%;
     height: 150px;
     padding-bottom: 8px;
     border-radius: 0 12px 0 0;
+    object-fit: cover;
 }
 
 .sub-img3 {
-    width: 272px;
+    max-width: 272px;
+    width: 100%;
     height: 150px;
     padding-right: 8px;
+    object-fit: cover;
 }
 
 .sub-img4 {
-    width: 272px;
+    max-width: 272px;
+    width: 100%;
     height: 150px;
     border-radius: 0 0 12px 0;
+    object-fit: cover;
 }
 
 .description-and-buttons-container {
     display: flex;
     flex-direction: row;
+    align-self: center;
     justify-content: space-between;
     padding-top: 48px;
-}
-
-.description-container {
-    width: 60%;
+    max-width: 1024px;
+    width: 100%;
 }
 
 #beds {
@@ -154,10 +166,49 @@
 
 .review-buttons {
     display: flex;
+    justify-content: flex-start;
     padding: 32px 0 32px 0;
     gap: 50px;
+    max-width: 1024px;
+    width: 100%;
+    margin: auto;
 }
 
-i {
-    vertical-align: middle;
+.reviews-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: auto;
+    column-gap: 100px;
+    padding-top: 24px;
+    max-width: 1024px;
+    width: 100%;
+    margin: auto;
+}
+
+.review-card {
+    display: block;
+    height: 150px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+#rating{
+    padding-left: 25px;
+}
+
+#date {
+    color: rgba(156, 152, 152, 0.867);
+    font-size: 12px;
+}
+
+#review-body {
+    text-align: left;
+    overflow-y: scroll;
+}
+
+.review-header {
+    padding: 28px 0 28px 0;
+    max-width: 1024px;
+    width: 100%;
+    margin: auto;
 }
