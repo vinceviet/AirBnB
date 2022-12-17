@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 // import SignupFormModal from "../SignupFormModal";
-import "./LoginForm.css";
+import "../../context/Forms.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function LoginFormModal() {
 
   return (
     <div id="login-container">
-      <header className="login-header">
+      <header className="header">
         <button id="cancel-x" onClick={closeModal}>X</button>
         Log In
       </header>
@@ -50,7 +50,7 @@ function LoginFormModal() {
         </ul>
         <label>
           <input
-            className="login-fields"
+            className="fields-top"
             type="text"
             placeholder="Username or Email"
             value={credential}
@@ -60,7 +60,7 @@ function LoginFormModal() {
         </label>
         <label>
           <input
-            className="login-fields"
+            className="fields-bottom"
             id="password"
             type="password"
             placeholder="Password"
@@ -69,7 +69,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button id="login-button" type="submit">Continue</button>
+        <button id="field-buttons" type="submit">Continue</button>
       </form>
       {/* <span className="new-user-redirect">
           New User? <button id="new-user-redirect-button" onClick={handleNewUserClick}>Sign Up</button>
