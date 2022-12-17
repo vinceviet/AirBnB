@@ -35,7 +35,7 @@ function LoginFormModal() {
   // }
 
   return (
-    <div id="login-container">
+    <div className="login-container">
       <header className="header">
         <button id="cancel-x" onClick={closeModal}>X</button>
         Log In

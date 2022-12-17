@@ -22,6 +22,7 @@
     height: 25px;
     border-radius: 6px;
     background-color: black;
+    cursor: pointer;
 }
 
 #delete-button {
@@ -31,5 +32,6 @@
     width: 100px;
     height: 25px;
     border-radius: 6px;
+    cursor: pointer;
     background-color: rgb(251, 2, 2);
 }

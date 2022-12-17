@@ -43,7 +43,7 @@ const Reviews = ({ spotId, spot }) => {
                 {reviews.map(review => {
                     return (
                         <div className="review-card">
-                            <span>{review.User.firstName}</span>
+                            <span>{review.User.firstName}</span><span id="rating"><i className="fas fa-sharp fa-solid fa-star fa-xs fa-align" /> {review.stars}</span><br />
                             <span id="date">{formatDate(review.createdAt)}</span>
                             <p id="review-body">{review.review}</p>
                         </div>

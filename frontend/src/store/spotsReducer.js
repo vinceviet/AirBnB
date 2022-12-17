@@ -42,7 +42,7 @@ export const getSpotDetails = (spotId) => async dispatch => {
     };
 };
 
-export const createSpot = (newSpot, newImg, history) => async dispatch => {
+export const createSpot = (newSpot, newImg, reviewInfo, history) => async dispatch => {
     const res = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -58,6 +58,8 @@ export const createSpot = (newSpot, newImg, history) => async dispatch => {
         });
         if (res.ok) {
             spot.previewImage = newImg.url;
+            spot.avgRating = reviewInfo.avgRating;
+            spot.numReviews = reviewInfo.numReviews;
         }
         dispatch(create(spot));
         history.push(`/spots/${spot.id}`);

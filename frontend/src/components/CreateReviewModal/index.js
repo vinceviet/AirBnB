@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createReview } from "../../store/reviewsReducer";
-import "./CreateReview.css";
+import "../../context/Forms.css";
 
-export default function CreateReviewModal({ spotId, user }) {
+export default function CreateReviewModal({ spot, user }) {
     const dispatch = useDispatch();
+    // const { id, avgStarRatin, numReviews } = spot
     const [review, setReview] = useState("");
-    const [stars, setStars] = useState(1);
+    const [stars, setStars] = useState("");
+    // const [avgStarRating, setAvgStarRating] = useState(spot.avgStarRating);
+    // const [numReviews, setNumReviews] = useState(spot.numReviews);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
@@ -15,23 +18,23 @@ export default function CreateReviewModal({ spotId, user }) {
         e.preventDefault();
         const newReview = { review, stars }
 
-        await dispatch(createReview(spotId, user, newReview))
+        await dispatch(createReview(spot.id, user, newReview))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
                 const validationErrors = [];
                 if (data && data.errors) setErrors(data.errors);
-                if (data && data.message){
+                if (data && data.message) {
                     validationErrors.push(data.message);
                     setErrors(validationErrors);
                 };
             });
-            
+
     };
 
     return (
-        <div className="create-review-container">
-            <header className="create-review-header">
+        <div className="login-container">
+            <header className="header">
                 <button id="cancel-x" onClick={closeModal}>X</button>
                 Create a Review
             </header>
@@ -42,7 +45,7 @@ export default function CreateReviewModal({ spotId, user }) {
                 </ul>
                 <label>
                     <input
-                        className="review-fields-top"
+                        className="fields-top"
                         type="text"
                         placeholder="Review"
                         value={review}
@@ -50,10 +53,11 @@ export default function CreateReviewModal({ spotId, user }) {
                         required
                     />
                 </label>
-                <label> Rate your stay
+                <label>
                     <input
-                        className="review-fields-bottom"
+                        className="fields-bottom"
                         type="number"
+                        placeholder="Rate your stay"
                         min="1"
                         max="5"
                         value={stars}
@@ -61,7 +65,7 @@ export default function CreateReviewModal({ spotId, user }) {
                         required
                     />
                 </label>
-                <button id="create-review-button" type="submit">Create Review</button>
+                <button className="field-buttons" type="submit">Create Review</button>
             </form>
         </div>
     );
