@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { thunkDeleteSpot } from '../../store/spotsReducer';
 import { useModal } from '../../context/Modal';
-import './DeleteSpot.css';
+import "../../context/DeleteModal.css";
 
 export default function DeleteSpotModal({ spot }) {
     const dispatch = useDispatch();

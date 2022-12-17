@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editSpot } from '../../store/spotsReducer';
 import { useModal } from '../../context/Modal';
-import './EditSpot.css';
+import "../../context/Forms.css";
 
 export default function EditSpotModal({ spotId, sessionUser }) {
     const dispatch = useDispatch();
@@ -39,8 +39,8 @@ export default function EditSpotModal({ spotId, sessionUser }) {
     };
 
     return (
-        <div className="edit-spot-container">
-            <header className="signup-header">
+        <div className="container">
+            <header className="header">
                 <button id="cancel-x" onClick={closeModal}>X</button>
                 Modify Listing
             </header>
@@ -52,7 +52,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </ul>
                 <label>
                     <input
-                        className="edit-fields-top"
+                        className="fields-top"
                         type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
@@ -60,7 +60,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields"
+                        className="fields"
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
@@ -68,7 +68,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields"
+                        className="fields"
                         type="text"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
@@ -76,7 +76,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields"
+                        className="fields"
                         type="text"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
@@ -84,7 +84,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields"
+                        className="fields"
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -92,7 +92,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields"
+                        className="fields"
                         type="text"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -100,13 +100,13 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 </label>
                 <label>
                     <input
-                        className="edit-fields-bottom"
+                        className="fields-bottom"
                         type="text"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
                 </label>
-                <button id="edit-button" type="submit">Modify Listing</button>
+                <button className="field-buttons" type="submit">Modify Listing</button>
             </form>
         </div>
     );

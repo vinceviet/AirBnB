@@ -10,7 +10,7 @@
     text-align: left;
     padding: 24px;
     width: 568px;
-    height: 450px;
+    height: 400px;
     overflow-y: auto;
 }
 
@@ -18,7 +18,7 @@
     text-align: left;
     padding: 24px;
     width: 568px;
-    height: 450px;
+    height: 620px;
     overflow-y: auto;
 }
 
@@ -50,6 +50,7 @@
     padding-left: 10px;
     width: 520px;
     height: 52px;
+    border-bottom: none;
 }
 
 .fields-top {
@@ -72,10 +73,11 @@
 }
 
 
-#field-buttons {
+.field-buttons {
     display: block;
     color: white;
     border: none;
+    font-size: 18px;
     width: 100%;
     height: 48px;
     margin-top: 30px;

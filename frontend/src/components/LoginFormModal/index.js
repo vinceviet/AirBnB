@@ -69,7 +69,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button id="field-buttons" type="submit">Continue</button>
+        <button className="field-buttons" type="submit">Continue</button>
       </form>
       {/* <span className="new-user-redirect">
           New User? <button id="new-user-redirect-button" onClick={handleNewUserClick}>Sign Up</button>

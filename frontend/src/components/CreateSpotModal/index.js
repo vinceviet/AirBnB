@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { createSpot } from "../../store/spotsReducer";
-import './CreateSpot.css';
+import "../../context/Forms.css";
 
 export default function CreatSpotModal() {
     const dispatch = useDispatch();
@@ -39,8 +39,8 @@ export default function CreatSpotModal() {
     };
 
     return (
-        <div className="create-container">
-            <header className="signup-header">
+        <div className="container">
+            <header className="header">
                 <button id="cancel-x" onClick={closeModal}>X</button>
                 Create a listing
             </header>
@@ -52,7 +52,7 @@ export default function CreatSpotModal() {
                 </ul>
                 <label>
                     <input
-                        className="create-fields-top"
+                        className="fields-top"
                         type="text"
                         placeholder="Address"
                         value={address}
@@ -62,7 +62,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields"
+                        className="fields"
                         type="text"
                         placeholder="City"
                         value={city}
@@ -72,7 +72,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields"
+                        className="fields"
                         type="text"
                         placeholder="State"
                         value={state}
@@ -82,7 +82,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields"
+                        className="fields"
                         type="text"
                         placeholder="Country"
                         value={country}
@@ -92,7 +92,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields"
+                        className="fields"
                         type="text"
                         placeholder="Home Name"
                         value={name}
@@ -102,7 +102,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields"
+                        className="fields"
                         type="text"
                         placeholder="Describe your home"
                         value={description}
@@ -112,7 +112,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields"
+                        className="fields"
                         type="number"
                         placeholder="Set price per night: must be a number greater then 1"
                         value={price}
@@ -122,7 +122,7 @@ export default function CreatSpotModal() {
                 </label>
                 <label>
                     <input
-                        className="create-fields-bottom"
+                        className="fields-bottom"
                         type="url"
                         placeholder="Preview Image URL"
                         value={url}
@@ -130,7 +130,7 @@ export default function CreatSpotModal() {
                         required
                     />
                 </label>
-                <button id="create-button" type="submit">Create listing</button>
+                <button className="field-buttons" type="submit">Create listing</button>
             </form>
         </div>
     );

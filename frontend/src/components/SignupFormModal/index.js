@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+import "../../context/Forms.css";
 
 function SignupFormModal() {
     const dispatch = useDispatch();
@@ -31,8 +31,8 @@ function SignupFormModal() {
     };
 
     return (
-        <div className="signup-container">
-            <header className="signup-header">
+        <div className="container">
+            <header className="header">
                 <button id="cancel-x" onClick={closeModal}>X</button>
                 Sign Up
             </header>
@@ -44,7 +44,7 @@ function SignupFormModal() {
                 </ul>
                 <label>
                     <input
-                        className="signup-fields-top"
+                        className="fields-top"
                         type="email"
                         placeholder="Email"
                         value={email}
@@ -54,7 +54,7 @@ function SignupFormModal() {
                 </label>
                 <label>
                     <input
-                        className="signup-fields"
+                        className="fields"
                         type="text"
                         placeholder="Username: must be at least 4 characters"
                         value={username}
@@ -64,7 +64,7 @@ function SignupFormModal() {
                 </label>
                 <label>
                     <input
-                        className="signup-fields"
+                        className="fields"
                         type="text"
                         placeholder="First Name"
                         value={firstName}
@@ -74,7 +74,7 @@ function SignupFormModal() {
                 </label>
                 <label>
                     <input
-                        className="signup-fields"
+                        className="fields"
                         type="text"
                         placeholder="Last Name"
                         value={lastName}
@@ -84,7 +84,7 @@ function SignupFormModal() {
                 </label>
                 <label>
                     <input
-                        className="signup-fields"
+                        className="fields"
                         type="password"
                         placeholder="Password: must be at least 6 characters"
                         value={password}
@@ -94,7 +94,7 @@ function SignupFormModal() {
                 </label>
                 <label>
                     <input
-                        className="signup-fields-bottom"
+                        className="fields-bottom"
                         type="password"
                         placeholder="Confirm Password"
                         value={confirmPassword}
@@ -102,7 +102,7 @@ function SignupFormModal() {
                         required
                     />
                 </label>
-                <button id="signup-button" type="submit">Continue</button>
+                <button className="field-buttons" type="submit">Continue</button>
             </form>
         </div>
     );
