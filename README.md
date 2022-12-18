@@ -41,15 +41,19 @@ Run npm start on backend and frontend directories
 ## Current Active Features:
 ---------------------------------------------------------
 Make an account or use demo user to test out the app:
+
 ![signup](/assets/signup.gif)
 
 Create a spot listing:
+
 ![create](/assets/create-spot.gif)
 
 Edit and delete spot listing:
+
 ![edit/delete](/assets/edit-delete-spot.gif)
 
 Create and delete review:
+
 ![review](/assets/reviews.gif)
 
 
