@@ -59,6 +59,7 @@ const SpotDetails = () => {
 
     return (
         <div className="spot-details-container">
+            <li className="nav-divider" />
             <div className="details-header-container">
                 <h2 id="name">{spot.name}</h2>
                 <p id="spot-info">
@@ -85,7 +86,7 @@ const SpotDetails = () => {
                 </div>
                 <div className="price-and-buttons-container">
                     <div className='review-info-container'>
-                        <span id="price">{`$${spot.price}`}</span><span id="night">night</span>
+                        <span id="price">{`$${spot.price}`} <span id="night">night</span></span>
                         <div className="review-inbox">
                             <span><i className="fas fa-sharp fa-solid fa-star fa-xs" /> {Number(spot.avgStarRating).toFixed(1)} &middot;</span>
                             <span> {`${spot.numReviews} Reviews`}</span>

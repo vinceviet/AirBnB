@@ -33,10 +33,11 @@ export default function CreatSpotModal() {
         const newImg = { url, preview: true };
         const reviewInfo = { avgRating, numReviews }
 
-        const createdSpot = await dispatch(createSpot(newSpot, newImg, reviewInfo, history))
+        await dispatch(createSpot(newSpot, newImg, reviewInfo, history))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
+                console.log(data)
                 if (data && data.errors) setErrors(data.errors);
             });
     };
