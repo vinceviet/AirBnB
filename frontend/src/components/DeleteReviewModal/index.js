@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { deleteReview } from '../../store/reviewsReducer';
 import { getSpotDetails } from '../../store/spotsReducer';
