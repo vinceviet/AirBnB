@@ -121,11 +121,10 @@ const SpotDetails = () => {
                                 <OpenModalMenuItem
                                     itemText="Create a Review"
                                     onItemClick={closeMenu}
-                                    modalComponent={<CreateReviewModal spot={spot} user={sessionUser} />}
+                                    modalComponent={<CreateReviewModal spotId={spotId} user={sessionUser} />}
                                 />
                             </div>
                             {sessionUser && reviews.find(review => sessionUser.id === review.userId) && (
-
                                 <div className="detail-page-buttons">
                                     <OpenModalMenuItem
                                         itemText="Delete Review"

@@ -8,7 +8,7 @@ const load = reviews => ({
     type: LOAD_REVIEWS, reviews
 });
 
-const add = review => ({
+const add = (review) => ({
     type: ADD_REVIEW, review
 });
 
@@ -34,7 +34,7 @@ export const createReview = (spotId, user, review) => async dispatch => {
         const review = await res.json();
         review.spotId = spotId;
         review.User = user;
-        dispatch(add(review));
+        dispatch(add(review))
         return review;
     };
 };
@@ -49,7 +49,6 @@ export const deleteReview = (reviewId) => async dispatch => {
         dispatch(remove(review, reviewId));
     };
 };
-
 
 let initialState = {};
 

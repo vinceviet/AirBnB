@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createReview } from "../../store/reviewsReducer";
+import { getSpotDetails } from "../../store/spotsReducer";
 import "../../context/Forms.css";
 
-export default function CreateReviewModal({ spot, user }) {
+export default function CreateReviewModal({ spotId, user }) {
     const dispatch = useDispatch();
-    // const { id, avgStarRatin, numReviews } = spot
     const [review, setReview] = useState("");
     const [stars, setStars] = useState("");
-    // const [avgStarRating, setAvgStarRating] = useState(spot.avgStarRating);
-    // const [numReviews, setNumReviews] = useState(spot.numReviews);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
@@ -18,7 +16,7 @@ export default function CreateReviewModal({ spot, user }) {
         e.preventDefault();
         const newReview = { review, stars }
 
-        await dispatch(createReview(spot.id, user, newReview))
+        await dispatch(createReview(spotId, user, newReview)).then(dispatch(getSpotDetails(spotId)))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();

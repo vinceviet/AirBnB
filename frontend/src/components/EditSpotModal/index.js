@@ -20,15 +20,16 @@ export default function EditSpotModal({ spotId, sessionUser }) {
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
     const [Owner, setOwner] = useState(spot.Owner);
-    const [starRating, setStarRating] = useState(spot.avgStarRating);
+    const [avgStarRating, setAvgStarRating] = useState(spot.avgStarRating);
     const [numReviews, setNumReviews] = useState(spot.numReviews);
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(!avgStarRating) setAvgStarRating(0);
         const editedSpot = {
             id: spotId, address, city, state, country, name, description, price,
-            lat, lng, Owner, SpotImages, starRating, numReviews
+            lat, lng, Owner, SpotImages, avgStarRating, numReviews
         }
         await dispatch(editSpot(editedSpot))
             .then(closeModal)

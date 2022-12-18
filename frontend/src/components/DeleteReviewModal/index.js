@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { deleteReview } from '../../store/reviewsReducer';
+import { getSpotDetails } from '../../store/spotsReducer';
 import "../../context/DeleteModal.css";
 
 
@@ -10,7 +11,9 @@ export default function DeleteReviewModal({ reviews, user, spotId }) {
     const review = reviews.find(review => review.userId === user.id);
 
     const deleteReviewHandler = async (review) => {
-        await dispatch(deleteReview(review)).then(closeModal);
+        await dispatch(deleteReview(review))
+        await dispatch(getSpotDetails(spotId))
+        .then(closeModal);
     };
 
     return (
