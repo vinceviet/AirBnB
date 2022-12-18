@@ -23,7 +23,12 @@ function SignupFormModal() {
                 .then(closeModal)
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
+                    const validationErrors = [];
+                    if (data && data.message) {
+                        validationErrors.push(data.message)
+                        setErrors(validationErrors)
+                    }
+                    else if (data && data.errors) setErrors(data.errors);
 
                 });
         }

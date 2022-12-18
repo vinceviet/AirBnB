@@ -58,7 +58,7 @@ export const createSpot = (newSpot, newImg, reviewInfo, history) => async dispat
         });
         if (res.ok) {
             spot.previewImage = newImg.url;
-            spot.avgRating = reviewInfo.avgRating;
+            spot.avgStarRating = reviewInfo.avgStarRating;
             spot.numReviews = reviewInfo.numReviews;
         }
         dispatch(create(spot));

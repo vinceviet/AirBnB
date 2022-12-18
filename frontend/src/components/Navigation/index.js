@@ -9,11 +9,9 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const location = useLocation();
+  
   let active = true;
-  console.log('location', location)
-  console.log('locationpathname', location.pathname)
   if(location.pathname !== '/') active = false;
-  console.log('active', active)
 
   return (
     <div className={active ? "nav-links" : "spot-details-nav-links"}>

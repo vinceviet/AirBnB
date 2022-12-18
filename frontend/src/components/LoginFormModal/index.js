@@ -21,11 +21,11 @@ function LoginFormModal() {
         async (res) => {
           const data = await res.json();
           const validationErrors = [];
-          if (data && data.errors) setErrors(data.errors);
           if (data && data.message) {
             validationErrors.push(data.message)
             setErrors(validationErrors)
-          };
+          }
+          else if (data && data.errors) setErrors(data.errors);
         }
       );
   };

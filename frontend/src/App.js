@@ -5,11 +5,12 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import SpotDetails from "./components/SpotDetails";
+import NotFound from "./components/NotFound";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -25,8 +26,8 @@ function App() {
           <Route path="/spots/:spotId">
             <SpotDetails />
           </Route>
-          <Route>
-            Page Not Found
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       )}

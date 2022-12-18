@@ -100,15 +100,15 @@ router.get('/', asyncHandler(async (req, res) => {
     const ratingAndImage = {};
     let spots = await Spot.findAll({ where, limit: size, offset: size * (page - 1) });
     for (let spot of spots) {
-        const avgRating = await Review.findOne({
-            attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgRating']],
+        const avgStarRating = await Review.findOne({
+            attributes: [[sequelize.fn('AVG', sequelize.col('Review.stars')), 'avgStarRating']],
             where: { spotId: spot.id },
         });
         const previewImage = await SpotImage.findOne({
             attributes: ['url'],
             where: { spotId: spot.id, preview: true },
         });
-        if (avgRating !== null) ratingAndImage.avgRating = avgRating.toJSON().avgRating;
+        if (avgStarRating !== null) ratingAndImage.avgStarRating = avgStarRating.toJSON().avgStarRating;
         if (previewImage !== null) ratingAndImage.previewImage = previewImage.toJSON().url;
         spot = spot.toJSON();
         Object.assign(spot, ratingAndImage);

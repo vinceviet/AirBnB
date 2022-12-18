@@ -19,7 +19,7 @@ export default function CreatSpotModal() {
     // const [url, setUrl] = useState("https://a0.muscache.com/im/pictures/miso/Hosting-54377075/original/7522445e-f002-44d0-805a-46a0ce1af323.jpeg?im_w=720");
     const [lat, setLat] = useState(33.3333);
     const [lng, setLng] = useState(22.2222);
-    const [avgRating, setAvgRating] = useState(0);
+    const [avgStarRating, setAvgStarRating] = useState(0);
     const [numReviews, setNumReviews] = useState(0);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
@@ -31,13 +31,12 @@ export default function CreatSpotModal() {
             address, city, state, country, name, description, price, lat, lng,
         }
         const newImg = { url, preview: true };
-        const reviewInfo = { avgRating, numReviews }
+        const reviewInfo = { avgStarRating, numReviews }
 
         await dispatch(createSpot(newSpot, newImg, reviewInfo, history))
             .then(closeModal)
             .catch(async (res) => {
                 const data = await res.json();
-                console.log(data)
                 if (data && data.errors) setErrors(data.errors);
             });
     };

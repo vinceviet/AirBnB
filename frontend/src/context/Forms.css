@@ -75,6 +75,8 @@
 
 .field-buttons {
     display: block;
+    position: sticky;
+    bottom: 0;
     color: white;
     border: none;
     font-size: 18px;
@@ -88,3 +90,8 @@
             rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%,
             rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
 }
+
+/* .input:focus.label,
+.input:not(:placeholder-shown).label {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+} */

@@ -102,7 +102,7 @@ export default function EditSpotModal({ spotId, sessionUser }) {
                 <label>
                     <input
                         className="fields-bottom"
-                        type="text"
+                        type="number"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                     />
