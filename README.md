@@ -8,7 +8,7 @@
 
 [Onebnb](https://airbnb-clone-o67j.onrender.com) is a clone of Airbnb with functionalities including creating new listings, leaving reviews, signing up for an account, logging into existing account, as well as a demo user option to try out the app.
 
-## Tecnologies
+## Technologies
 ---------------------------------------------------------
 
 - [Express](https://expressjs.com/) - backend routing
