@@ -16,7 +16,6 @@ const SpotDetails = () => {
     const history = useHistory();
     const { spotId } = useParams();
     const spot = useSelector(state => state.spots[spotId]);
-    if (!spot) history.push('/');
     const reviews = Object.values(useSelector(state => state.reviews));
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);
