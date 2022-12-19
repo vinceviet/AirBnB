@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpotDetails } from '../../store/spotsReducer';
@@ -13,8 +13,10 @@ import DeleteReviewModal from '../DeleteReviewModal';
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { spotId } = useParams();
     const spot = useSelector(state => state.spots[spotId]);
+    if (!spot) history.push('/');
     const reviews = Object.values(useSelector(state => state.reviews));
     const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(false);

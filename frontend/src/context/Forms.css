@@ -91,7 +91,11 @@
             rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
 }
 
-/* .input:focus.label,
-.input:not(:placeholder-shown).label {
-    transform: translateY(-30px) translateX(10px) scale(0.75);
+/* input:focus,
+input::placeholder{
+    transform: translateY(-5px) translateX(10px) scale(0.75);
 } */
+
+label {
+    transform: translate(0, -2.75rem);
+  }
